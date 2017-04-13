@@ -74,7 +74,7 @@ class User extends CI_Model {
 			
 			$this->db->where('user_id',$id);
             $this->db->update('user', $this);
-			return $user_id;
+			return $this->user_id;
         }
 
 }

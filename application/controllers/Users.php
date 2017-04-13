@@ -113,10 +113,10 @@ class Users extends REST_Controller {
 	public function index_put(){
 		$this->load->model('user');
 		
-		if($this->get('id') != null){
-			 $insert_id = $this->user->update_entry($this->put(),$this->get('id'));
+		if($this->input->get('id') != null){
+			 $insert_id = $this->user->update_entry($this->put(),$this->input->get('id'));
         $message = [
-            'id' => $this->get('id'), 
+            'id' => $this->input->get('id'), 
             'username' => $this->put('username'),
             'displayname' => $this->put('displayname'),
             'tipe'  => $this->put('tipe'),
@@ -152,13 +152,17 @@ class Users extends REST_Controller {
     public function index_delete()
     {
         $this->load->model('user');
-        $id = (int) $this->get('id');
+        $id = $this->input->get('id');
 
         // Validate the id.
         if ($id <= 0)
         {
             // Set the response and exit
-            $this->response(NULL, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
+			$message = [
+                'id' => $id,
+                'message' => 'error'
+				];
+            $this->response($message, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         } else{
             $status = $this->user->delete_entry($id);
             // $this->some_model->delete_something($id);
