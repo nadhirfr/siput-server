@@ -35,36 +35,30 @@ class Iuran extends CI_Model {
     
         public function delete_entry($id){
             $this->load->database();
-            $this->user_id = $id;
-            $this->db->where('user_id',$this->user_id);
-            $this->db->delete('user');
+            $this->iuran_id = $id;
+            $this->db->where('iuran_id',$this->iuran_id);
+            $this->db->delete('iuran');
             if($this->db->affected_rows()>0){ 
-                return $this->user_id;
+                return $this->iuran_id;
             }else{
                return false; 
             }
                
         }
     
-    
-        public function getValidLogins(){
-            $this->load->database();
-            $query = $this->db->get('user');
-            $result = $query->result();
-            $user = NULL;
-             foreach($result as $key => $values){
-                 $user[] = array($values->user_username => $values->user_password);
-             }
-            return $user;
-        }
 
-        public function update_entry()
+        public function update_entry($iuran,$id)
         {
-                $this->title    = $_POST['title'];
-                $this->content  = $_POST['content'];
-                $this->date     = time();
-
-                $this->db->update('entries', $this, array('id' => $_POST['id']));
+            $this->load->database();
+            $this->iuran_id = $id;
+            $this->iuran_nama = $iuran['iuran_nama'];
+            $this->iuran_nominal = $iuran['iuran_nominal'];
+			$this->iuran_jenis_id = $iuran['iuran_jenis_id'];
+			$this->iuran_kategori_id = $iuran['iuran_kategori_id'];
+			
+			$this->db->where('iuran_id',$id);
+            $this->db->update('iuran', $this);
+			return $iuran_id;
         }
 
 }
