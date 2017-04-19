@@ -8,7 +8,7 @@ require APPPATH . '/libraries/REST_Controller.php';
 // use namespace
 use Restserver\Libraries\REST_Controller;
 
-class Iuran_perubahans extends REST_Controller {
+class Pengeluaran_kategoris extends REST_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -44,8 +44,8 @@ class Iuran_perubahans extends REST_Controller {
     
     public function index_get()
     {
-        $this->load->model('iuran_perubahan');
-        $iuran_perubahans = $this->iuran_perubahan->get_all();
+        $this->load->model('pengeluaran_kategori');
+        $pengeluaran_kategoris = $this->pengeluaran_kategori->get_all();
 
         $id = $this->get('id');
 
@@ -54,17 +54,17 @@ class Iuran_perubahans extends REST_Controller {
         if ($id === NULL)
         {
             // Check if the users data store contains users (in case the database result returns NULL)
-            if ($iuran_perubahans)
+            if ($pengeluaran_kategoris)
             {
                 // Set the response and exit
-                $this->response($iuran_perubahans, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+                $this->response($pengeluaran_kategoris, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
             }
             else
             {
                 // Set the response and exit
                 $this->response([
                     'status' => FALSE,
-                    'message' => 'No iuran iuran_perubahan were found'
+                    'message' => 'No kategori pengeluaran were found'
                 ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
             }
         }
@@ -83,50 +83,49 @@ class Iuran_perubahans extends REST_Controller {
             // Get the user from the array, using the id as key for retrieval.
             // Usually a model is to be used for this.
 
-            $iuran_perubahan = NULL;
+            $pengeluaran_kategori = NULL;
 
-            if (!empty($iuran_perubahans))
+            if (!empty($pengeluaran_kategoris))
             {
-                foreach ($iuran_perubahans as $key => $value)
+                foreach ($pengeluaran_kategoris as $key => $value)
                 {
-                    if (isset($value->iuran_perubahan_id) && $value->iuran_perubahan_id == $id)
+                    if (isset($value->pengeluaran_kategori_id) && $value->pengeluaran_kategori_id == $id)
                     {
-                        $iuran_perubahan = $value;
+                        $pengeluaran_kategori = $value;
                     }
                 }
             }
 
-            if (!empty($iuran_perubahan))
+            if (!empty($pengeluaran_kategori))
             {
-                $this->set_response($iuran_perubahan, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+                $this->set_response($pengeluaran_kategori, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
             }
             else
             {
                 $this->set_response([
                     'status' => FALSE,
-                    'message' => 'perubahan iuran could not be found'
+                    'message' => 'kategori pengeluaran could not be found'
                 ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
             }
         }
     }
     
 	public function index_put(){
-		$this->load->model('iuran_perubahan');
+		$this->load->model('pengeluaran_kategori');
 		
-		if($this->input->get('iuran_perubahan_id') != null){
-			 $insert_id = $this->iuran_perubahan->update_entry($this->put(),$this->input->get('id'));
+		if($this->input->get('pengeluaran_kategori_id') != null){
+			 $insert_id = $this->pengeluaran_kategori->update_entry($this->put(),$this->get('id'));
         $message = [
-            'iuran_perubahan_id' => $this->input->get('iuran_perubahan_id'), 
-            'iuran_perubahan_nominal' => $this->put('iuran_perubahan_nominal'),
-            'iuran_perubahan_date' => $this->put('iuran_perubahan_date'),
-            'iuran_id' => $this->put('iuran_id'),
-            'message'=>'update iuran_perubahan'
+            'pengeluaran_kategori_id' => $this->input->get('pengeluaran_kategori_id'), 
+            'pengeluaran_kategori_nama' => $this->put('pengeluaran_kategori_nama'),
+            'pengeluaran_kategori_interval' => $this->put('pengeluaran_kategori_interval'),
+            'message'=>'update pengeluaran_kategori'
         ];
 
         $this->set_response($message, REST_Controller::HTTP_OK); // HTTP ok response
 		} else{
 			$message = [
-            'message' => 'Id perubahan iuran null'
+            'message' => 'Id kategori pengeluaran null'
 			];
 			 $this->response($message, REST_Controller::HTTP_BAD_REQUEST);
 		}
@@ -135,24 +134,24 @@ class Iuran_perubahans extends REST_Controller {
 	
     public function index_post()
     {
-        $this->load->model('iuran_perubahan');
-        $insert_id = $this->iuran_perubahan->insert_entry($_POST);
+        $this->load->model('pengeluaran_kategori');
+        $insert_id = $this->pengeluaran_kategori->insert_entry($_POST);
         // $this->some_model->update_user( ... );
         $message = [
-           'iuran_perubahan_id' => $insert_id, 
-            'iuran_perubahan_nominal' => $this->post('iuran_perubahan_nominal'),
-            'iuran_perubahan_date' => $this->post('iuran_perubahan_date'),
-            'iuran_id' => $this->post('iuran_id'),
+            'pengeluaran_kategori_id' => $insert_id,
+            'pengeluaran_kategori_nama' => $this->post('pengeluaran_kategori_nama'),
+            'pengeluaran_kategori_interval' => $this->post('pengeluaran_kategori_interval'),
             'message' => 'added a resource'
         ];
+
 
         $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
     }
     
     public function index_delete()
     {
-        $this->load->model('iuran_perubahan');
-        $id = (int) $this->get('iuran_perubahan_id');
+        $this->load->model('pengeluaran_kategori');
+        $id = (int) $this->get('pengeluaran_kategori_id');
 
         // Validate the id.
         if ($id <= 0)
@@ -164,7 +163,7 @@ class Iuran_perubahans extends REST_Controller {
 				];
             $this->response($message, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         } else{
-            $status = $this->iuran_perubahan->delete_entry($id);
+            $status = $this->pengeluaran_kategori->delete_entry($id);
             // $this->some_model->delete_something($id);
             if($status){
                 $message = [

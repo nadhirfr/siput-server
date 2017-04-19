@@ -25,6 +25,7 @@ class User extends CI_Model {
         public function insert_entry()
         {
             $this->load->database();
+                $query = $this->db->get('user');
             $this->user_username = $_POST['username'];
             $this->user_displayname = $_POST['displayname'];
             $this->user_password = $_POST['password'];
