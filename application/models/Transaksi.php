@@ -29,7 +29,7 @@ class Transaksi extends CI_Model {
         public function insert_entry()
         {
             $this->load->database();
-            $this->transaksi_id = $_POST['transaksi_id'];
+            $query = $this->db->get('transaksi');
             $this->transaksi_date = $_POST['transaksi_date'];
             $this->transaksi_nama= $_POST['transaksi_nama'];
 			$this->transaksi_nominal= $_POST['transaksi_nominal'];
@@ -50,7 +50,7 @@ class Transaksi extends CI_Model {
         public function delete_entry($id){
             $this->load->database();
             $this->transaksi_id = $id;
-            $this->db->where('transaksi',$this->transaksi_id);
+            $this->db->where('transaksi_id',$this->transaksi_id);
             $this->db->delete('transaksi');
             if($this->db->affected_rows()>0){ 
                 return $this->transaksi_id;
@@ -61,11 +61,10 @@ class Transaksi extends CI_Model {
         }
     
 
-        public function update_entry($pengeluaran_kategori,$id)
+        public function update_entry($transaksi,$id)
         {
             $this->load->database();
             $this->transaksi_id = $id;
-            $this->transaksi_id = $transaksi['transaksi_id'];
             $this->transaksi_date = $transaksi['transaksi_date'];
             $this->transaksi_nama= $transaksi['transaksi_nama'];
 			$this->transaksi_nominal= $transaksi['transaksi_nominal'];
@@ -76,7 +75,7 @@ class Transaksi extends CI_Model {
 			
 			$this->db->where('transaksi_id',$id);
             $this->db->update('transaksi', $this);
-			return $transaksi_id;
+			return $this->transaksi_id;
         }
 
 }

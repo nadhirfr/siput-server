@@ -7,11 +7,6 @@ class Pengeluaran_perubahan extends CI_Model {
         public $pengeluaran_perubahan_date;
         public $pengeluaran_id;
 		
-        public function __construct()
-        {
-            parent::__construct();
-        }
-
     
         public function get_all()
         {
@@ -30,9 +25,10 @@ class Pengeluaran_perubahan extends CI_Model {
         public function insert_entry()
         {
             $this->load->database();
-            $this->pengeluaran_perubahan_id = $_POST['pengeluaran_perubahan_id'];
-            $this->pengeluaran_perubahan_nama = $_POST['pengeluaran_perubahan_nama'];
-            $this->pengeluaran_perubahan_interval = $_POST['pengeluaran_perubahan_interval'];
+            $query = $this->db->get('pengeluaran_perubahan');
+            $this->pengeluaran_perubahan_date = $_POST['pengeluaran_perubahan_date'];
+			$this->pengeluaran_id = $_POST['pengeluaran_id'];
+            $this->pengeluaran_perubahan_nominal = $_POST['pengeluaran_perubahan_nominal'];
             $this->db->insert('pengeluaran_perubahan', $this);
             $insert_id = $this->db->insert_id();
 //            In case of multiple inserts you could use
@@ -46,7 +42,7 @@ class Pengeluaran_perubahan extends CI_Model {
         public function delete_entry($id){
             $this->load->database();
             $this->pengeluaran_perubahan_id = $id;
-            $this->db->where('pengeluaran_perubahan',$this->pengeluaran_perubahan_id);
+            $this->db->where('pengeluaran_perubahan_id',$this->pengeluaran_perubahan_id);
             $this->db->delete('pengeluaran_perubahan');
             if($this->db->affected_rows()>0){ 
                 return $this->pengeluaran_perubahan_id;
@@ -67,7 +63,7 @@ class Pengeluaran_perubahan extends CI_Model {
 			
 			$this->db->where('pengeluaran_perubahan_id',$id);
             $this->db->update('pengeluaran_perubahan', $this);
-			return $pengeluaran_perubahan_id;
+			return $this->pengeluaran_perubahan_id;
         }
 
 }

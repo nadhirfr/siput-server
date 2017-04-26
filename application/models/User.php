@@ -25,18 +25,14 @@ class User extends CI_Model {
         public function insert_entry()
         {
             $this->load->database();
-                $query = $this->db->get('user');
+            $query = $this->db->get('user');
             $this->user_username = $_POST['username'];
             $this->user_displayname = $_POST['displayname'];
             $this->user_password = $_POST['password'];
             $this->user_tipe = $_POST['tipe'];
             $this->db->insert('user', $this);
             $insert_id = $this->db->insert_id();
-//            In case of multiple inserts you could use
-//            $this->db->trans_start();
-//            $this->db->trans_complete();
-//            
-                
+
             return $insert_id;
         }
     

@@ -24,9 +24,9 @@ class Deposit extends CI_Model {
         public function insert_entry()
         {
             $this->load->database();
-            $this->user_id = $_POST['user_id'];
+            $query = $this->db->get('deposit');
             $this->deposit_jumlah = $_POST['deposit_jumlah'];
-            $this->iuran_jenis_id = $_POST['jenis'];
+            $this->user_id = $_POST['user_id'];
             $this->db->insert('deposit', $this);
             $insert_id = $this->db->insert_id();
 //            In case of multiple inserts you could use
@@ -60,7 +60,7 @@ class Deposit extends CI_Model {
 			
 			$this->db->where('deposit_id',$id);
             $this->db->update('deposit', $this);
-			return $deposit_id;
+			return $this->deposit_id;
         }
 
 }

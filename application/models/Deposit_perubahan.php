@@ -25,7 +25,7 @@ class Deposit_perubahan extends CI_Model {
         public function insert_entry()
         {
             $this->load->database();
-            $this->deposit_perubahan_id = $_POST['deposit_perubahan_id'];
+            $query = $this->db->get('deposit_perubahan');
             $this->deposit_perubahan_date = $_POST['deposit_perubahan_date'];
 			$this->deposit_id = $_POST['deposit_id'];
             $this->transaksi_id = $_POST['transaksi_id'];
@@ -57,13 +57,13 @@ class Deposit_perubahan extends CI_Model {
         {
             $this->load->database();
             $this->deposit_perubahan_id = $id;
-            $this->deposit_perubahan_date = $deposit['deposit_perubahan_date'];
-            $this->deposit_id = $deposit['deposit_id'];
-			$this->transaksi_id = $deposit['transaksi_id'];
+            $this->deposit_perubahan_date = $deposit_perubahan['deposit_perubahan_date'];
+            $this->deposit_id = $deposit_perubahan['deposit_id'];
+			$this->transaksi_id = $deposit_perubahan['transaksi_id'];
 			
 			$this->db->where('deposit_perubahan_id',$id);
             $this->db->update('deposit_perubahan', $this);
-			return $deposit_perubahan_id;
+			return $this->deposit_perubahan_id;
         }
 
 }

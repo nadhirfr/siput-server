@@ -24,7 +24,7 @@ class Iuran_jenis extends CI_Model {
         public function insert_entry()
         {
             $this->load->database();
-            $this->iuran_jenis_id = $_POST['iuran_jenis_id'];
+            $query = $this->db->get('iuran_jenis');
             $this->iuran_jenis_nama = $_POST['iuran_jenis_nama'];
             $this->iuran_jenis_keterangan = $_POST['iuran_jenis_keterangan'];
             $this->db->insert('iuran_jenis', $this);
@@ -40,7 +40,7 @@ class Iuran_jenis extends CI_Model {
         public function delete_entry($id){
             $this->load->database();
             $this->iuran_jenis_id = $id;
-            $this->db->where('iuran_jenis',$this->iuran_jenis_id);
+            $this->db->where('iuran_jenis_id',$this->iuran_jenis_id);
             $this->db->delete('iuran_jenis');
             if($this->db->affected_rows()>0){ 
                 return $this->iuran_jenis_id;
@@ -60,7 +60,7 @@ class Iuran_jenis extends CI_Model {
 			
 			$this->db->where('iuran_jenis_id',$id);
             $this->db->update('iuran_jenis', $this);
-			return $iuran_jenis_id;
+			return $this->iuran_jenis_id;
         }
 
 }

@@ -14,15 +14,21 @@ class Iuran extends CI_Model {
             $query = $this->db->get('iuran');
             return $query->result();
         }
-
+		public function get($id){
+			$this->load->database();
+			$this->db->where($id);
+            $query = $this->db->get('iuran');
+            return $query->result();
+		}
     
         public function insert_entry()
         {
             $this->load->database();
-            $this->iuran_nama = $_POST['nama'];
-            $this->iuran_nominal = $_POST['nominal'];
-            $this->iuran_jenis_id = $_POST['jenis'];
-            $this->iuran_kategori_id = $_POST['kategori'];
+			$query = $this->db->get('iuran');
+            $this->iuran_nama = $_POST['iuran_nama'];
+            $this->iuran_nominal = $_POST['iuran_nominal'];
+            $this->iuran_jenis_id = $_POST['iuran_jenis_id'];
+            $this->iuran_kategori_id = $_POST['iuran_kategori_id'];
             $this->db->insert('iuran', $this);
             $insert_id = $this->db->insert_id();
 //            In case of multiple inserts you could use
@@ -58,7 +64,7 @@ class Iuran extends CI_Model {
 			
 			$this->db->where('iuran_id',$id);
             $this->db->update('iuran', $this);
-			return $iuran_id;
+			return $this->iuran_id;
         }
 
 }

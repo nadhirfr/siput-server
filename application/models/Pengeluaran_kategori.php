@@ -24,7 +24,7 @@ class Pengeluaran_kategori extends CI_Model {
         public function insert_entry()
         {
             $this->load->database();
-            $this->pengeluaran_kategori_id = $_POST['pengeluaran_kategori_id'];
+            $query = $this->db->get('pengeluaran_kategori');
             $this->pengeluaran_kategori_nama = $_POST['pengeluaran_kategori_nama'];
             $this->pengeluaran_kategori_waktu = $_POST['pengeluaran_kategori_waktu'];
             $this->db->insert('pengeluaran_kategori', $this);
@@ -39,8 +39,8 @@ class Pengeluaran_kategori extends CI_Model {
     
         public function delete_entry($id){
             $this->load->database();
-            $this->pengeluaran_kategor_id = $id;
-            $this->db->where('pengeluaran_kategori',$this->pengeluaran_kategori_id);
+            $this->pengeluaran_kategori_id = $id;
+            $this->db->where('pengeluaran_kategori_id',$this->pengeluaran_kategori_id);
             $this->db->delete('pengeluaran_kategori');
             if($this->db->affected_rows()>0){ 
                 return $this->pengeluaran_kategori_id;
@@ -60,7 +60,7 @@ class Pengeluaran_kategori extends CI_Model {
 			
 			$this->db->where('pengeluaran_kategori_id',$id);
             $this->db->update('pengeluaran_kategori', $this);
-			return $pengeluaran_kategori_id;
+			return $this->pengeluaran_kategori_id;
         }
 
 }
