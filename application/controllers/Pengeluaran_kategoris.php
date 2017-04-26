@@ -113,12 +113,12 @@ class Pengeluaran_kategoris extends REST_Controller {
 	public function index_put(){
 		$this->load->model('pengeluaran_kategori');
 		
-		if($this->input->get('pengeluaran_kategori_id') != null){
-			 $insert_id = $this->pengeluaran_kategori->update_entry($this->put(),$this->get('id'));
+		if($this->input->get('id') != null){
+			 $insert_id = $this->pengeluaran_kategori->update_entry($this->put(),$this->input->get('id'));
         $message = [
-            'pengeluaran_kategori_id' => $this->input->get('pengeluaran_kategori_id'), 
+            'id' => $this->input->get('id'), 
             'pengeluaran_kategori_nama' => $this->put('pengeluaran_kategori_nama'),
-            'pengeluaran_kategori_interval' => $this->put('pengeluaran_kategori_interval'),
+            'pengeluaran_kategori_waktu' => $this->put('pengeluaran_kategori_waktu'),
             'message'=>'update pengeluaran_kategori'
         ];
 
@@ -138,9 +138,9 @@ class Pengeluaran_kategoris extends REST_Controller {
         $insert_id = $this->pengeluaran_kategori->insert_entry($_POST);
         // $this->some_model->update_user( ... );
         $message = [
-            'pengeluaran_kategori_id' => $insert_id,
+            'id' => $insert_id,
             'pengeluaran_kategori_nama' => $this->post('pengeluaran_kategori_nama'),
-            'pengeluaran_kategori_interval' => $this->post('pengeluaran_kategori_interval'),
+            'pengeluaran_kategori_waktu' => $this->post('pengeluaran_kategori_waktu'),
             'message' => 'added a resource'
         ];
 
@@ -151,7 +151,7 @@ class Pengeluaran_kategoris extends REST_Controller {
     public function index_delete()
     {
         $this->load->model('pengeluaran_kategori');
-        $id = (int) $this->get('pengeluaran_kategori_id');
+        $id = $this->input->get('id');
 
         // Validate the id.
         if ($id <= 0)

@@ -113,10 +113,10 @@ class Transaksis extends REST_Controller {
 	public function index_put(){
 		$this->load->model('transaksi');
 		
-		if($this->input->get('transaksi_id') != null){
+		if($this->input->get('id') != null){
 			 $insert_id = $this->transaksi->update_entry($this->put(),$this->input->get('id'));
         $message = [
-            'transaksi_id' => $this->input->get('transaksi_id'), 
+            'id' => $this->input->get('id'), 
             'transaksi_date' => $this->put('transaksi_date'),
             'transaksi_nama' => $this->put('transaksi_nama'),
 			'transaksi_nominal' => $this->put('transaksi_nominal'),
@@ -143,7 +143,7 @@ class Transaksis extends REST_Controller {
         $insert_id = $this->transaksi->insert_entry($_POST);
         // $this->some_model->update_user( ... );
         $message = [
-           'transaksi_id' => $insert_id, 
+           'id' => $insert_id, 
             'transaksi_date' => $this->post('transaksi_date'),
             'transaksi_nama' => $this->post('transaksi_nama'),
 			'transaksi_nominal' => $this->post('transaksi_nominal'),
@@ -160,7 +160,7 @@ class Transaksis extends REST_Controller {
     public function index_delete()
     {
         $this->load->model('transaksi');
-        $id = (int) $this->get('transaksi_id');
+        $id =$this->input->get('id');
 
         // Validate the id.
         if ($id <= 0)

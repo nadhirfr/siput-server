@@ -113,14 +113,13 @@ class Iuran_users extends REST_Controller {
 	public function index_put(){
 		$this->load->model('iuran_user');
 		
-		if($this->input->get('iuran_user_id') != null){
+		if($this->input->get('id') != null){
 			 $insert_id = $this->iuran_user->update_entry($this->put(),$this->input->get('id'));
         $message = [
-            'iuran_user_id' => $this->input->get('iuran_user_id'), 
-            'iuran_user_status' => $this->put('iuran_perubahan_nominal'),
+            'id' => $this->input->get('id'), 
+            'iuran_user_status' => $this->put('iuran_user_status'),
             'user_id' => $this->put('user_id'),
             'iuran_id' => $this->put('iuran_id'),
-			'transaksi_id' => $this->put('transaksi_id'),
             'message'=>'update iuran_perubahan'
         ];
 
@@ -140,11 +139,10 @@ class Iuran_users extends REST_Controller {
         $insert_id = $this->iuran_user->insert_entry($_POST);
         // $this->some_model->update_user( ... );
         $message = [
-           'iuran_user_id' => $iuran_user_id, 
-            'iuran_user_status' => $this->post('iuran_perubahan_nominal'),
+           'id' => $insert_id, 
+            'iuran_user_status' => $this->post('iuran_user_status'),
             'user_id' => $this->post('user_id'),
             'iuran_id' => $this->post('iuran_id'),
-			'transaksi_id' => $this->post('transaksi_id'),
             'message' => 'added a resource'
         ];
 
@@ -154,7 +152,7 @@ class Iuran_users extends REST_Controller {
     public function index_delete()
     {
         $this->load->model('iuran_user');
-        $id = (int) $this->get('iuran_user_id');
+        $id = $this->input->get('id');
 
         // Validate the id.
         if ($id <= 0)

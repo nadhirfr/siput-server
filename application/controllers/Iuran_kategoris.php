@@ -111,12 +111,12 @@ class iuran_kategoris extends REST_Controller {
     }
     
 	public function index_put(){
-		$this->load->model('Iuran_kategori');
+		$this->load->model('iuran_kategori');
 		
-		if($this->input->get('iuran_kategori_id') != null){
-			 $insert_id = $this->Iuran_kategori->update_entry($this->put(),$this->get('id'));
+		if($this->input->get('id') != null){
+			 $insert_id = $this->iuran_kategori->update_entry($this->put(),$this->input->get('id'));
         $message = [
-            'iuran_kategori_id' => $this->input->get('iuran_kategori_id'), 
+            'id' => $this->input->get('id'), 
             'iuran_kategori_nama' => $this->put('iuran_kategori_nama'),
             'iuran_kategori_interval' => $this->put('iuran_kategori_interval'),
             'message'=>'update Iuran_kategori'
@@ -138,7 +138,7 @@ class iuran_kategoris extends REST_Controller {
         $insert_id = $this->iuran_kategori->insert_entry($_POST);
         // $this->some_model->update_user( ... );
         $message = [
-            'iuran_kategori_id' => $insert_id,
+            'id' => $insert_id,
             'iuran_kategori_nama' => $this->post('iuran_kategori_nama'),
             'iuran_kategori_interval' => $this->post('iuran_kategori_interval'),
             'message' => 'added a resource'
@@ -149,8 +149,8 @@ class iuran_kategoris extends REST_Controller {
     
     public function index_delete()
     {
-        $this->load->model('Iuran_kategori');
-        $id = (int) $this->get('iuran_kategori_id');
+        $this->load->model('iuran_kategori');
+        $id = $this->input->get('id');
 
         // Validate the id.
         if ($id <= 0)
@@ -162,7 +162,7 @@ class iuran_kategoris extends REST_Controller {
 				];
             $this->response($message, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         } else{
-            $status = $this->Iuran_kategori->delete_entry($id);
+            $status = $this->iuran_kategori->delete_entry($id);
             // $this->some_model->delete_something($id);
             if($status){
                 $message = [

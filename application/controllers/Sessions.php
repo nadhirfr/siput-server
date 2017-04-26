@@ -116,8 +116,7 @@ class Sessions extends REST_Controller {
 		if($this->input->get('id') != null){
 			 $insert_id = $this->session->update_entry($this->put(),$this->input->get('id'));
         $message = [
-            'session_id' => $this->input->get('id'),
-            'session_status' => $this->put('session_status'),
+            'id' => $this->input->get('id'),
             'user_id' => $this->put('user_id'),
 			'session_time' => $this->put('session_time'),
             'message'=>'update session'
@@ -139,8 +138,7 @@ class Sessions extends REST_Controller {
         $insert_id = $this->session->insert_entry($_POST);
         // $this->some_model->update_user( ... );
         $message = [
-           'session_id' => $insert_id, 
-            'session_status' => $this->post('session_status'),
+           'id' => $insert_id, 
             'user_id' => $this->post('user_id'),
 			'session_time' => $this->post('session_time'),
             'message' => 'added a resource'
@@ -152,7 +150,7 @@ class Sessions extends REST_Controller {
     public function index_delete()
     {
         $this->load->model('session');
-        $id = (int) $this->get('session_id');
+        $id =$this->input->get('id');
 
         // Validate the id.
         if ($id <= 0)

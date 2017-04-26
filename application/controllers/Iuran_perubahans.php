@@ -113,10 +113,10 @@ class Iuran_perubahans extends REST_Controller {
 	public function index_put(){
 		$this->load->model('iuran_perubahan');
 		
-		if($this->input->get('iuran_perubahan_id') != null){
+		if($this->input->get('id') != null){
 			 $insert_id = $this->iuran_perubahan->update_entry($this->put(),$this->input->get('id'));
         $message = [
-            'iuran_perubahan_id' => $this->input->get('iuran_perubahan_id'), 
+            'id' => $this->input->get('id'), 
             'iuran_perubahan_nominal' => $this->put('iuran_perubahan_nominal'),
             'iuran_perubahan_date' => $this->put('iuran_perubahan_date'),
             'iuran_id' => $this->put('iuran_id'),
@@ -139,7 +139,7 @@ class Iuran_perubahans extends REST_Controller {
         $insert_id = $this->iuran_perubahan->insert_entry($_POST);
         // $this->some_model->update_user( ... );
         $message = [
-           'iuran_perubahan_id' => $insert_id, 
+           'id' => $insert_id, 
             'iuran_perubahan_nominal' => $this->post('iuran_perubahan_nominal'),
             'iuran_perubahan_date' => $this->post('iuran_perubahan_date'),
             'iuran_id' => $this->post('iuran_id'),
@@ -152,7 +152,7 @@ class Iuran_perubahans extends REST_Controller {
     public function index_delete()
     {
         $this->load->model('iuran_perubahan');
-        $id = (int) $this->get('iuran_perubahan_id');
+        $id =$this->input->get('id');
 
         // Validate the id.
         if ($id <= 0)

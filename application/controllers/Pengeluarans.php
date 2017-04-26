@@ -113,13 +113,14 @@ class Pengeluarans extends REST_Controller {
 	public function index_put(){
 		$this->load->model('pengeluaran');
 		
-		if($this->input->get('pengeluaran_id') != null){
+		if($this->input->get('id') != null){
 			 $insert_id = $this->pengeluaran->update_entry($this->put(),$this->input->get('id'));
         $message = [
-            'pengeluaran_id' => $this->input->get('pengeluaran_id'), 
+            'id' => $this->input->get('id'), 
             'pengeluaran_nama' => $this->put('pengeluaran_nama'),
             'pengeluaran_jenis_id' => $this->put('pengeluaran_jenis_id'),
             'pengeluaran_kategori_id' => $this->put('pengeluaran_kategori_id'),
+			'pengeluaran_keterangan' => $this->put('pengeluaran_keterangan'),
             'message'=>'update pengeluaran'
         ];
 
@@ -135,13 +136,14 @@ class Pengeluarans extends REST_Controller {
 	
     public function index_post()
     {
-        $this->load->model('iuran_user');
+        $this->load->model('pengeluaran');
         $insert_id = $this->pengeluaran->insert_entry($_POST);
         // $this->some_model->update_user( ... );
         $message = [
-           'pengeluaran_id' => $insert_id, 
+           'id' => $insert_id, 
             'pengeluaran_nama' => $this->post('pengeluaran_nama'),
             'pengeluaran_jenis_id' => $this->post('pengeluaran_jenis_id'),
+			'pengeluaran_keterangan' => $this->post('pengeluaran_keterangan'),
             'pengeluaran_kategori_id' => $this->post('pengeluaran_kategori_id'),
             'message' => 'added a resource'
         ];
@@ -152,7 +154,7 @@ class Pengeluarans extends REST_Controller {
     public function index_delete()
     {
         $this->load->model('pengeluaran');
-        $id = (int) $this->get('pengeluaran_id');
+        $id = $this->input->get('id');
 
         // Validate the id.
         if ($id <= 0)

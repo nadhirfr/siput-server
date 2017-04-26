@@ -113,10 +113,10 @@ class Iurans extends REST_Controller {
 	public function index_put(){
 		$this->load->model('iuran');
 		
-		if($this->get('iuran_id') != null){
-			 $insert_id = $this->iuran->update_entry($this->put(),$this->get('id'));
+		if($this->input->get('id') != null){
+			 $insert_id = $this->iuran->update_entry($this->put(),$this->input->get('id'));
         $message = [
-            'iuran_id' => $this->get('iuran_id'), 
+            'id' => $this->input->get('id'), 
             'iuran_nama' => $this->put('iuran_nama'),
             'iuran_nominal' => $this->put('iuran_nominal'),
 			'iuran_jenis_id' => $this->put('iuran_jenis_id'),
@@ -139,11 +139,11 @@ class Iurans extends REST_Controller {
         $insert_id = $this->iuran->insert_entry($_POST);
         // $this->some_model->update_user( ... );
         $message = [
-             'iuran_id' => $this->get('iuran_id'), 
-            'iuran_nama' => $this->put('iuran_nama'),
-            'iuran_nominal' => $this->put('iuran_nominal'),
-			'iuran_jenis_id' => $this->put('iuran_jenis_id'),
-			'iuran_kategori_id' => $this->put('iuran_kategori_id'),
+             'id' => $insert_id, 
+            'iuran_nama' => $this->post('iuran_nama'),
+            'iuran_nominal' => $this->post('iuran_nominal'),
+			'iuran_jenis_id' => $this->post('iuran_jenis_id'),
+			'iuran_kategori_id' => $this->post('iuran_kategori_id'),
         ];
 
         $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
@@ -152,19 +152,23 @@ class Iurans extends REST_Controller {
     public function index_delete()
     {
         $this->load->model('iuran');
-        $id = (int) $this->get('iuran_id');
+        $id =$this->input->get('id');
 
         // Validate the id.
         if ($id <= 0)
         {
             // Set the response and exit
+			$message = [
+                'id' => $id,
+                'message' => 'error'
+				];
             $this->response(NULL, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         } else{
             $status = $this->iuran->delete_entry($id);
             // $this->some_model->delete_something($id);
             if($status){
                 $message = [
-                'id' => $iuran_id,
+                'id' => $id,
                 'message' => 'Deleted the resource'
             ];
                 $this->set_response($message, REST_Controller::HTTP_OK); //response ok

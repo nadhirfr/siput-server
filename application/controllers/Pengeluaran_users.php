@@ -113,11 +113,11 @@ class Pengeluaran_users extends REST_Controller {
 	public function index_put(){
 		$this->load->model('pengeluaran_user');
 		
-		if($this->input->get('pengeluaran_user_id') != null){
+		if($this->input->get('id') != null){
 			 $insert_id = $this->pengeluaran_user->update_entry($this->put(),$this->input->get('id'));
         $message = [
-            'pengeluaran_user_id' => $this->input->get('pengeluaran_user_id'), 
-            'pengeluaran_user_status' => $this->put('pengeluaran_perubahan_nominal'),
+            'id' => $this->input->get('id'), 
+            'pengeluaran_user_status' => $this->put('pengeluaran_user_status'),
             'user_id' => $this->put('user_id'),
             'pengeluaran_id' => $this->put('pengeluaran_id'),
 			'transaksi_id' => $this->put('transaksi_id'),
@@ -140,8 +140,8 @@ class Pengeluaran_users extends REST_Controller {
         $insert_id = $this->pengeluaran_user->insert_entry($_POST);
         // $this->some_model->update_user( ... );
         $message = [
-           'pengeluaran_user_id' => $pengeluaran_user_id, 
-            'pengeluaran_user_status' => $this->post('pengeluaran_perubahan_nominal'),
+           'id' => $insert_id, 
+            'pengeluaran_user_status' => $this->post('pengeluaran_user_status'),
             'user_id' => $this->post('user_id'),
             'pengeluaran_id' => $this->post('pengeluaran_id'),
 			'transaksi_id' => $this->post('transaksi_id'),
@@ -154,7 +154,7 @@ class Pengeluaran_users extends REST_Controller {
     public function index_delete()
     {
         $this->load->model('pengeluaran_user');
-        $id = (int) $this->get('pengeluaran_user_id');
+        $id =$this->input->get('id');
 
         // Validate the id.
         if ($id <= 0)
