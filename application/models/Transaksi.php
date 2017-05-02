@@ -35,8 +35,8 @@ class Transaksi extends CI_Model {
 			$this->transaksi_nominal= $_POST['transaksi_nominal'];
 			$this->user_id = $_POST['user_id'];
 			$this->transaksi_tipe = $_POST['transaksi_tipe'];
-			$this->iuran_id= $_POST['iuran_id'];
-			$this->pengeluaran_id = $_POST['pengeluaran_id'];
+			$this->iuran_id= $_POST['iuran_id'] == 'null' ? null : $_POST['iuran_id'];
+			$this->pengeluaran_id = $_POST['pengeluaran_id'] == 'null' ? null : $_POST['pengeluaran_id'];
             $this->db->insert('transaksi', $this);
             $insert_id = $this->db->insert_id();
 //            In case of multiple inserts you could use
@@ -59,7 +59,29 @@ class Transaksi extends CI_Model {
             }
                
         }
+		
+		public function getJumlahTransaksi(){
+			$this->load->database();
+			return $this->db->query("SELECT sum(transaksi_nominal) as Jumlah FROM transaksi")->result();
+		}
+		
+		public function getJumlahIuran(){
+			$this->load->database();
+			return $this->db->query("SELECT sum(transaksi_nominal) as Jumlah FROM transaksi WHERE transaksi_tipe='iuran';")->result();
+		}
+		
+		public function getJumlahPengeluaran(){
+			$this->load->database();
+			return $this->db->query("SELECT sum(transaksi_nominal) as Jumlah FROM transaksi WHERE transaksi_tipe='pengeluaran';")->result();
+		}
     
+		public function getTransaksiPertama($user_id,$iuran_id){
+			$this->load->database();
+			return $this->db->query("SELECT * FROM transaksi WHERE transaksi_date IN (SELECT MIN(transaksi_date) 
+									FROM transaksi WHERE user_id=".$user_id." AND iuran_id=".$iuran_id.") 
+									AND user_id=".$user_id." AND iuran_id=".$iuran_id.";")->result();
+		}
+   
 
         public function update_entry($transaksi,$id)
         {
