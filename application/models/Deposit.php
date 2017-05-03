@@ -16,7 +16,14 @@ class Deposit extends CI_Model {
 		
 		public function get($id){
 			$this->load->database();
-			$this->db->where($id);
+			$this->db->where('deposit_id',$id);
+            $query = $this->db->get('deposit');
+            return $query->result();
+		}
+		
+		public function getByUserID($user_id){
+			$this->load->database();
+			$this->db->where('user_id',$user_id);
             $query = $this->db->get('deposit');
             return $query->result();
 		}

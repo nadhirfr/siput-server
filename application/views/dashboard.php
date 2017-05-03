@@ -36,7 +36,7 @@
 				<a class="navbar-brand" href="#"><span>SIPUT</span> Sistem Keuangan RT</a>
 				<ul class="user-menu">
 					<li class="dropdown pull-right">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> User <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> <?php echo $data_user[0]->user_username;?> <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Profile</a></li>
 							<li><a href="#"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg> Settings</a></li>
@@ -114,7 +114,7 @@
 							<svg class="glyph stroked arrow down"><use xlink:href="#stroked-arrow-down"/></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">120</div>
+							<div class="large">Rp <?php echo $total_pemasukan[0]->Jumlah; ?></div>
 							<div class="text-muted">Pemasukan</div>
 						</div>
 					</div>
@@ -127,7 +127,7 @@
 							<svg class="glyph stroked arrow up"><use xlink:href="#stroked-arrow-up"/></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">52</div>
+							<div class="large">Rp <?php echo $total_pengeluaran[0]->Jumlah; ?></div>
 							<div class="text-muted">Pengeluaran</div>
 						</div>
 					</div>
@@ -140,8 +140,8 @@
 							<svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">6</div>
-							<div class="text-muted">Users</div>
+							<div class="large"><?php echo $total_user;?></div>
+							<div class="text-muted">Jumlah User</div>
 						</div>
 					</div>
 				</div>
@@ -153,226 +153,56 @@
 							<svg class="glyph stroked app-window-with-content"><use xlink:href="#stroked-app-window-with-content"></use></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">25.2k</div>
-							<div class="text-muted">Pemberitahuan</div>
+							<div class="large">Rp <?php echo $deposit[0]->deposit_jumlah;; ?></div>
+							<div class="text-muted">Deposit</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div><!--/.row-->
-		
-		<!--<div class="row">
+			
+			
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Grafik Pemasukan dan Pengeluaran</div>
+					<div class="panel-heading">Iuran Yang Harus Dibayar</div>
 					<div class="panel-body">
-						<div class="canvas-wrapper">
-							<canvas class="main-chart" id="line-chart" height="200" width="600"></canvas>
-						</div>
+						<table data-toggle="table"  data-url="x" data-show-refresh="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+						    <thead>
+						    <tr>
+						        <th data-sortable="true">Nama Iuran</th>
+						        <th data-sortable="true">Status</th>
+						        <th data-sortable="true">Nominal (@iuran)</th>
+						        <th data-sortable="true">Kekurangan</th>
+						    </tr>
+						    </thead>
+							<tbody>
+							<?php foreach ($data_iuran_user as $key => $value) { ?>
+							<tr>
+								<td><?php echo $value->iuran_nama ?></td>
+								<td><?php $tampil = $value->iuran_user_status == 1 ? "Lunas" : $tampil = "Belum Lunas";
+											echo $tampil;?></td>
+								<td><?php echo $value->iuran_nominal ?></td>
+								<td>Belum Dikerjakan</td>
+							</tr>
+							<?php } ?>
+							</tbody>
+						</table>
+						<p>
+							<?php var_dump($data_iuran_user);?>
+						</p>
 					</div>
 				</div>
 			</div>
-		</div>
-		
-		<!--/.row-->
-		
-		<!--<div class="row">
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>New Orders</h4>
-						<div class="easypiechart" id="easypiechart-blue" data-percent="92" ><span class="percent">92%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Comments</h4>
-						<div class="easypiechart" id="easypiechart-orange" data-percent="65" ><span class="percent">65%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>New Users</h4>
-						<div class="easypiechart" id="easypiechart-teal" data-percent="56" ><span class="percent">56%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Visitors</h4>
-						<div class="easypiechart" id="easypiechart-red" data-percent="27" ><span class="percent">27%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/.row-->
-								
-		<div class="row">
-			<div class="col-md-8">
-			
-				<!-- <div class="panel panel-default chat">
-					 <div class="panel-heading" id="accordion"><svg class="glyph stroked two-messages"><use xlink:href="#stroked-two-messages"></use></svg> Commands </div>
-					<div class="panel-body">
-						<ul>
-							<li class="left clearfix">
-								<span class="chat-img pull-left">
-									<img src="http://placehold.it/80/30a5ff/fff" alt="User Avatar" class="img-circle" />
-								</span>
-								<div class="chat-body clearfix">
-									<div class="header">
-										<strong class="primary-font">John Doe</strong> <small class="text-muted">32 mins ago</small>
-									</div>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ante turpis, rutrum ut ullamcorper sed, dapibus ac nunc. Vivamus luctus convallis mauris, eu gravida tortor aliquam ultricies. 
-									</p>
-								</div>
-							</li>
-							<li class="right clearfix">
-								<span class="chat-img pull-right">
-									<img src="http://placehold.it/80/dde0e6/5f6468" alt="User Avatar" class="img-circle" />
-								</span>
-								<div class="chat-body clearfix">
-									<div class="header">
-										<strong class="pull-left primary-font">Jane Doe</strong> <small class="text-muted">6 mins ago</small>
-									</div>
-									<p>
-										Mauris dignissim porta enim, sed commodo sem blandit non. Ut scelerisque sapien eu mauris faucibus ultrices. Nulla ac odio nisl. Proin est metus, interdum scelerisque quam eu, eleifend pretium nunc. Suspendisse finibus auctor lectus, eu interdum sapien.
-									</p>
-								</div>
-							</li>
-							<li class="left clearfix">
-								<span class="chat-img pull-left">
-									<img src="http://placehold.it/80/30a5ff/fff" alt="User Avatar" class="img-circle" />
-								</span>
-								<div class="chat-body clearfix">
-									<div class="header">
-										<strong class="primary-font">John Doe</strong> <small class="text-muted">32 mins ago</small>
-									</div>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ante turpis, rutrum ut ullamcorper sed, dapibus ac nunc. Vivamus luctus convallis mauris, eu gravida tortor aliquam ultricies. 
-									</p>
-								</div>
-							</li>
-						</ul>
-					</div> -->
-					
-					<!-- <div class="panel-footer">
-						<div class="input-group">
-							<input id="btn-input" type="text" class="form-control input-md" placeholder="Type your message here..." />
-							<span class="input-group-btn">
-								<button class="btn btn-success btn-md" id="btn-chat">Send</button>
-							</span>
-						</div>
-					</div>
-				</div>
-				
-			</div><!--/.col-->
-			
-			<div class="col-md-4">
-			
-				<!--<div class="panel panel-blue">
-					<div class="panel-heading dark-overlay"><svg class="glyph stroked clipboard-with-paper"><use xlink:href="#stroked-clipboard-with-paper"></use></svg>To-do List</div>
-					<div class="panel-body">
-						<ul class="todo-list">
-						<li class="todo-list-item">
-								<div class="checkbox">
-									<input type="checkbox" id="checkbox" />
-									<label for="checkbox">Make a plan for today</label>
-								</div>
-								<div class="pull-right action-buttons">
-									<a href="#"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg></a>
-									<a href="#" class="flag"><svg class="glyph stroked flag"><use xlink:href="#stroked-flag"></use></svg></a>
-									<a href="#" class="trash"><svg class="glyph stroked trash"><use xlink:href="#stroked-trash"></use></svg></a>
-								</div>
-							</li>
-							<li class="todo-list-item">
-								<div class="checkbox">
-									<input type="checkbox" id="checkbox" />
-									<label for="checkbox">Update Basecamp</label>
-								</div>
-								<div class="pull-right action-buttons">
-									<a href="#"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg></a>
-									<a href="#" class="flag"><svg class="glyph stroked flag"><use xlink:href="#stroked-flag"></use></svg></a>
-									<a href="#" class="trash"><svg class="glyph stroked trash"><use xlink:href="#stroked-trash"></use></svg></a>
-								</div>
-							</li>
-							<li class="todo-list-item">
-								<div class="checkbox">
-									<input type="checkbox" id="checkbox" />
-									<label for="checkbox">Send email to Jane</label>
-								</div>
-								<div class="pull-right action-buttons">
-									<a href="#"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg></a>
-									<a href="#" class="flag"><svg class="glyph stroked flag"><use xlink:href="#stroked-flag"></use></svg></a>
-									<a href="#" class="trash"><svg class="glyph stroked trash"><use xlink:href="#stroked-trash"></use></svg></a>
-								</div>
-							</li>
-							<li class="todo-list-item">
-								<div class="checkbox">
-									<input type="checkbox" id="checkbox" />
-									<label for="checkbox">Drink coffee</label>
-								</div>
-								<div class="pull-right action-buttons">
-									<a href="#"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg></a>
-									<a href="#" class="flag"><svg class="glyph stroked flag"><use xlink:href="#stroked-flag"></use></svg></a>
-									<a href="#" class="trash"><svg class="glyph stroked trash"><use xlink:href="#stroked-trash"></use></svg></a>
-								</div>
-							</li>
-							<li class="todo-list-item">
-								<div class="checkbox">
-									<input type="checkbox" id="checkbox" />
-									<label for="checkbox">Do some work</label>
-								</div>
-								<div class="pull-right action-buttons">
-									<a href="#"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg></a>
-									<a href="#" class="flag"><svg class="glyph stroked flag"><use xlink:href="#stroked-flag"></use></svg></a>
-									<a href="#" class="trash"><svg class="glyph stroked trash"><use xlink:href="#stroked-trash"></use></svg></a>
-								</div>
-							</li>
-							<li class="todo-list-item">
-								<div class="checkbox">
-									<input type="checkbox" id="checkbox" />
-									<label for="checkbox">Tidy up workspace</label>
-								</div>
-								<div class="pull-right action-buttons">
-									<a href="#"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg></a>
-									<a href="#" class="flag"><svg class="glyph stroked flag"><use xlink:href="#stroked-flag"></use></svg></a>
-									<a href="#" class="trash"><svg class="glyph stroked trash"><use xlink:href="#stroked-trash"></use></svg></a>
-								</div>
-							</li>
-						</ul>
-					</div>
-					<div class="panel-footer">
-						<div class="input-group">
-							<input id="btn-input" type="text" class="form-control input-md" placeholder="Add new task" />
-							<span class="input-group-btn">
-								<button class="btn btn-primary btn-md" id="btn-todo">Add</button>
-							</span>
-						</div>
-					</div>
-				</div>
-								
-			</div><!--/.col-->
-		</div><!--/.row--> 
-	</div>	<!--/.main-->
+		</div>				
 	
-	<div class="col-md-4">
+	<!--<div class="col-md-4">
 	
-	<div class="panel panel-red">
+				<div class="panel panel-red">
 					<div class="panel-heading dark-overlay"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg>Calendar</div>
 					<div class="panel-body">
 						<div id="calendar"></div>
 					</div>
 				</div>
-				</div>
+	</div>-->
 
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -381,6 +211,7 @@
 	<script src="js/easypiechart.js"></script>
 	<script src="js/easypiechart-data.js"></script>
 	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="<?php echo base_url();?>js/bootstrap-table.js"></script>
 	<script>
 		$('#calendar').datepicker({
 		});

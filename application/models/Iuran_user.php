@@ -17,11 +17,18 @@ class Iuran_user extends CI_Model {
 		
 		public function get($id){
 			$this->load->database();
-			$this->db->where($id);
+			$this->db->where('iuran_user_id',$id);
             $query = $this->db->get('iuran_user');
             return $query->result();
 		}
     
+		public function getByUserID($id){
+			$this->load->database();
+			$this->db->where('user_id',$id);
+            $query = $this->db->get('iuran_user');
+            return $query->result();
+		}
+		
         public function insert_entry()
         {
             $this->load->database();

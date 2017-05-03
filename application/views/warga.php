@@ -109,13 +109,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="panel panel-default">
 					<div class="panel-heading"> Data Warga </div>
 					<div class="panel-body">
-						<table data-toggle="table" data-url="tables/data1.json"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+						<table data-toggle="table" data-url="<?php echo base_url();?>users"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
 						    <thead>
 						    <tr>
-						        <th data-field="state" data-checkbox="true" >Nomer</th>
-						        <th data-field="id" data-sortable="true">ID Warga</th>
-						        <th data-field="name"  data-sortable="true">Nama Warga</th>
-						        <th data-field="price" data-sortable="true">Status Pembayaran</th>
+						        <th data-field="user_username" data-sortable="true">Username</th>
+						        <th data-field="user_displayname"  data-sortable="true">Full Name</th>
+						        <th data-field="user_tipe" data-sortable="true">Tipe User</th>
 						    </tr>
 						    </thead>
 						</table>

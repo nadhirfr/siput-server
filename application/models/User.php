@@ -11,13 +11,20 @@ class User extends CI_Model {
         public function get_all()
         {
             $this->load->database();
-                $query = $this->db->get('user');
-                return $query->result();
+            $query = $this->db->get('user');
+            return $query->result();
+        }
+		
+		public function get_count()
+        {
+            $this->load->database();
+            $query = $this->db->get('user');
+            return $query->num_rows();
         }
 
 		public function get($id){
 			$this->load->database();
-			$this->db->where($id);
+			$this->db->where('user_id',$id);
             $query = $this->db->get('user');
             return $query->result();
 		}
