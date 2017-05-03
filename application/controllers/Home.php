@@ -1,7 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Home extends CI_Controller {
+function __construct(){
+parent::__construct();
+$this->load->library('session');
+$this->load->database();
+if((!isset($_SESSION['nama']))){
+	redirect(base_url('login'));
+}
+}
 
 	/**
 	 * Index Page for this controller.
@@ -21,10 +29,24 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
         
-        $this->load->model('user');
-        var_dump( $this->user->getValidLogins());
+        //$this->load->model('user');
+        //var_dump( $this->user->getValidLogins());
 		//echo "Hello world!";
 	
-		//$this->load->view('welcome_message');
+		//$data['warga'] = $this->load->view('warga', NULL, TRUE);
+		$this->load->view('dashboard');
+		//echo "haloo";
+	}
+
+	public function warga(){
+		$this->load->view('warga');
+	}
+
+	public function pemasukan(){
+		$this->load->view('pemasukan');
+	}
+
+	public function grafik(){
+		$this->load->view('grafik');
 	}
 }

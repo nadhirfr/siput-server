@@ -30,7 +30,11 @@ class Pengeluaran_perubahan extends CI_Model {
         public function insert_entry()
         {
             $this->load->database();
+<<<<<<< HEAD
             $this->pengeluaran_perubahan_id = $id;
+=======
+            $this->pengeluaran_perubahan_id = $_POST['pengeluaran_perubahan_id'];
+>>>>>>> 1abacc07bc0d04a54010caa70a0b28d3f509c70e
             $this->pengeluaran_perubahan_nama = $_POST['pengeluaran_perubahan_nama'];
             $this->pengeluaran_perubahan_interval = $_POST['pengeluaran_perubahan_interval'];
             $this->db->insert('pengeluaran_perubahan', $this);

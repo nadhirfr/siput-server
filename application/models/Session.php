@@ -25,8 +25,12 @@ class Session extends CI_Model {
         public function insert_entry()
         {
             $this->load->database();
+<<<<<<< HEAD
 			$query = $this->db->get('session');
 			$this->user_id= $_POST['user_id'];
+=======
+			$this->user_id = $_POST['user_id'];
+>>>>>>> 1abacc07bc0d04a54010caa70a0b28d3f509c70e
 			$this->session_time= $_POST['session_time'];
             $this->session_status = $_POST['session_status'];
             $this->db->insert('session', $this);
@@ -42,7 +46,11 @@ class Session extends CI_Model {
         public function delete_entry($id){
             $this->load->database();
             $this->session_id = $id;
+<<<<<<< HEAD
             $this->db->where('session_id',$this->session_id);
+=======
+            $this->db->where('session',$this->session_id);
+>>>>>>> 1abacc07bc0d04a54010caa70a0b28d3f509c70e
             $this->db->delete('session');
             if($this->db->affected_rows()>0){ 
                 return $this->session_id;

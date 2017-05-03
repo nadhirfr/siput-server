@@ -14,21 +14,32 @@ class Iuran extends CI_Model {
             $query = $this->db->get('iuran');
             return $query->result();
         }
+<<<<<<< HEAD
 		public function get($id){
 			$this->load->database();
 			$this->db->where($id);
             $query = $this->db->get('iuran');
             return $query->result();
 		}
+=======
+
+>>>>>>> 1abacc07bc0d04a54010caa70a0b28d3f509c70e
     
         public function insert_entry()
         {
             $this->load->database();
+<<<<<<< HEAD
 			$query = $this->db->get('iuran');
             $this->iuran_nama = $_POST['iuran_nama'];
             $this->iuran_nominal = $_POST['iuran_nominal'];
             $this->iuran_jenis_id = $_POST['iuran_jenis_id'];
             $this->iuran_kategori_id = $_POST['iuran_kategori_id'];
+=======
+            $this->iuran_nama = $_POST['nama'];
+            $this->iuran_nominal = $_POST['nominal'];
+            $this->iuran_jenis_id = $_POST['jenis'];
+            $this->iuran_kategori_id = $_POST['kategori'];
+>>>>>>> 1abacc07bc0d04a54010caa70a0b28d3f509c70e
             $this->db->insert('iuran', $this);
             $insert_id = $this->db->insert_id();
 //            In case of multiple inserts you could use
@@ -64,7 +75,11 @@ class Iuran extends CI_Model {
 			
 			$this->db->where('iuran_id',$id);
             $this->db->update('iuran', $this);
+<<<<<<< HEAD
 			return $this->iuran_id;
+=======
+			return $iuran_id;
+>>>>>>> 1abacc07bc0d04a54010caa70a0b28d3f509c70e
         }
 
 }
