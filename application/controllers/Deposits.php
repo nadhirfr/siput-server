@@ -113,17 +113,10 @@ class Deposits extends REST_Controller {
 	public function index_put(){
 		$this->load->model('deposit');
 		
-<<<<<<< HEAD
 		if($this->input->get('id') != null){
 			 $insert_id = $this->deposit->update_entry($this->put(),$this->input->get('id'));
         $message = [
             'id' => $this->input->get('id'), 
-=======
-		if($this->get('deposit_id') != null){
-			 $insert_id = $this->deposit->update_entry($this->put(),$this->get('id'));
-        $message = [
-            'deposit_id' => $this->get('deposit_id'), 
->>>>>>> 1abacc07bc0d04a54010caa70a0b28d3f509c70e
             'user_id' => $this->put('user_id'),
             'deposit_jumlah' => $this->put('deposit_jumlah'),
         ];
@@ -144,15 +137,9 @@ class Deposits extends REST_Controller {
         $insert_id = $this->deposit->insert_entry($_POST);
         // $this->some_model->update_user( ... );
         $message = [
-<<<<<<< HEAD
              'id' => $insert_id, 
             'user_id' => $this->post('user_id'),
             'deposit_jumlah' => $this->post('deposit_jumlah'),
-=======
-             'deposit_id' => $this->get('deposit_id'), 
-            'user_id' => $this->put('user_id'),
-            'deposit_jumlah' => $this->put('deposit_jumlah'),
->>>>>>> 1abacc07bc0d04a54010caa70a0b28d3f509c70e
         ];
 
         $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
@@ -161,11 +148,7 @@ class Deposits extends REST_Controller {
     public function index_delete()
     {
         $this->load->model('deposit');
-<<<<<<< HEAD
         $id = $this->input->get('id');
-=======
-        $id = (int) $this->get('deposit_id');
->>>>>>> 1abacc07bc0d04a54010caa70a0b28d3f509c70e
 
         // Validate the id.
         if ($id <= 0)
@@ -177,11 +160,7 @@ class Deposits extends REST_Controller {
             // $this->some_model->delete_something($id);
             if($status){
                 $message = [
-<<<<<<< HEAD
                 'id' => $id,
-=======
-                'id' => $deposit_id,
->>>>>>> 1abacc07bc0d04a54010caa70a0b28d3f509c70e
                 'message' => 'Deleted the resource'
             ];
                 $this->set_response($message, REST_Controller::HTTP_OK); //response ok

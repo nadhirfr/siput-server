@@ -24,6 +24,7 @@ class Pengeluaran_jenis extends CI_Model {
         public function insert_entry()
         {
             $this->load->database();
+			$query = $this->db->get('pengeluaran_jenis');
             $this->pengeluaran_nama = $_POST['pengeluaran_nama'];
             $this->pengeluaran_keterangan = $_POST['pengeluaran_keterangan'];
             $this->db->insert('pengeluaran_jenis', $this);
@@ -39,7 +40,7 @@ class Pengeluaran_jenis extends CI_Model {
         public function delete_entry($id){
             $this->load->database();
             $this->pengeluaran_jenis_id = $id;
-            $this->db->where('pengeluaran_jenis',$this->pengeluaran_jenis_id);
+            $this->db->where('pengeluaran_jenis_id',$this->pengeluaran_jenis_id);
             $this->db->delete('pengeluaran_jenis');
             if($this->db->affected_rows()>0){ 
                 return $this->pengeluaran_jenis_id;
@@ -50,7 +51,7 @@ class Pengeluaran_jenis extends CI_Model {
         }
     
 
-        public function update_entry($iuran_jenis,$id)
+        public function update_entry($pengeluaran_jenis,$id)
         {
             $this->load->database();
             $this->pengeluaran_jenis_id = $id;
@@ -59,7 +60,7 @@ class Pengeluaran_jenis extends CI_Model {
 			
 			$this->db->where('pengeluaran_jenis_id',$id);
             $this->db->update('pengeluaran_jenis', $this);
-			return $pengeluaran_jenis_id;
+			return $this->pengeluaran_jenis_id;
         }
 
 }

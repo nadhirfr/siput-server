@@ -5,6 +5,7 @@
 
     function cek_login($table,$where){      
         return $this->db->get_where($table,$where);
+        
         if($cek > 0){
             $data_session = array(
             'nama' => $username,

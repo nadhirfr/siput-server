@@ -113,7 +113,6 @@ class Deposit_perubahans extends REST_Controller {
 	public function index_put(){
 		$this->load->model('deposit_perubahan');
 		
-<<<<<<< HEAD
 		if($this->input->get('id') != null){
 			 $insert_id = $this->deposit_perubahan->update_entry($this->put(),$this->input->get('id'));
         $message = [
@@ -122,15 +121,6 @@ class Deposit_perubahans extends REST_Controller {
             'deposit_id' => $this->put('deposit_id'),
 			'transaksi_id' => $this->put('transaksi_id'),
 			'message' => 'Updated deposit perubahan'
-=======
-		if($this->get('deposit_perubahan_id') != null){
-			 $insert_id = $this->iuran->update_entry($this->put(),$this->get('id'));
-        $message = [
-            'deposit_perubahan_id' => $this->get('deposit_perubahan_id'), 
-            'deposit_perubahan_date' => $this->put('deposit_perubahan_date'),
-            'deposit_id' => $this->put('deposit_id'),
-			'transaksi_id' => $this->put('transaksi_id'),
->>>>>>> 1abacc07bc0d04a54010caa70a0b28d3f509c70e
         ];
 
         $this->set_response($message, REST_Controller::HTTP_OK); // HTTP ok response
@@ -149,17 +139,10 @@ class Deposit_perubahans extends REST_Controller {
         $insert_id = $this->deposit_perubahan->insert_entry($_POST);
         // $this->some_model->update_user( ... );
         $message = [
-<<<<<<< HEAD
             'id' => $insert_id, 
             'deposit_perubahan_date' => $this->post('deposit_perubahan_date'),
             'deposit_id' => $this->post('deposit_id'),
 			'transaksi_id' => $this->post('transaksi_id'),
-=======
-            'deposit_perubahan_id' => $this->get('deposit_perubahan_id'), 
-            'deposit_perubahan_date' => $this->put('deposit_perubahan_date'),
-            'deposit_id' => $this->put('deposit_id'),
-			'transaksi_id' => $this->put('transaksi_id'),
->>>>>>> 1abacc07bc0d04a54010caa70a0b28d3f509c70e
         ];
 
         $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
@@ -168,34 +151,23 @@ class Deposit_perubahans extends REST_Controller {
     public function index_delete()
     {
         $this->load->model('deposit_perubahan');
-<<<<<<< HEAD
         $id =$this->input->get('id');
-=======
-        $id = (int) $this->get('deposit_perubahan_id');
->>>>>>> 1abacc07bc0d04a54010caa70a0b28d3f509c70e
 
         // Validate the id.
         if ($id <= 0)
         {
             // Set the response and exit
-<<<<<<< HEAD
 			$message = [
                 'id' => $id,
                 'message' => 'error'
 				];
-=======
->>>>>>> 1abacc07bc0d04a54010caa70a0b28d3f509c70e
             $this->response(NULL, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         } else{
             $status = $this->deposit_perubahan->delete_entry($id);
             // $this->some_model->delete_something($id);
             if($status){
                 $message = [
-<<<<<<< HEAD
                 'id' => $id,
-=======
-                'id' => $deposit_perubahan_id,
->>>>>>> 1abacc07bc0d04a54010caa70a0b28d3f509c70e
                 'message' => 'Deleted the resource'
             ];
                 $this->set_response($message, REST_Controller::HTTP_OK); //response ok

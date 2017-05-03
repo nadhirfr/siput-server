@@ -113,10 +113,10 @@ class Pengeluaran_perubahans extends REST_Controller {
 	public function index_put(){
 		$this->load->model('pengeluaran_perubahan');
 		
-		if($this->input->get('pengeluaran_perubahan_id') != null){
+		if($this->input->get('id') != null){
 			 $insert_id = $this->pengeluaran_perubahan->update_entry($this->put(),$this->input->get('id'));
         $message = [
-            'pengeluaran_perubahan_id' => $this->input->get('pengeluaran_perubahan_id'), 
+            'id' => $this->input->get('id'), 
             'pengeluaran_perubahan_nominal' => $this->put('pengeluaran_perubahan_nominal'),
             'pengeluaran_perubahan_date' => $this->put('pengeluaran_perubahan_date'),
             'pengeluaran_id' => $this->put('pengeluaran_id'),
@@ -139,7 +139,7 @@ class Pengeluaran_perubahans extends REST_Controller {
         $insert_id = $this->pengeluaran_perubahan->insert_entry($_POST);
         // $this->some_model->update_user( ... );
         $message = [
-           'pengeluaran_perubahan_id' => $insert_id, 
+           'id' => $insert_id, 
             'pengeluaran_perubahan_nominal' => $this->post('pengeluaran_perubahan_nominal'),
             'pengeluaran_perubahan_date' => $this->post('pengeluaran_perubahan_date'),
             'pengeluaran_id' => $this->post('pengeluaran_id'),
@@ -152,7 +152,7 @@ class Pengeluaran_perubahans extends REST_Controller {
     public function index_delete()
     {
         $this->load->model('pengeluaran_perubahan');
-        $id = (int) $this->get('pengeluaran_perubahan_id');
+        $id = $this->input->get('id');
 
         // Validate the id.
         if ($id <= 0)

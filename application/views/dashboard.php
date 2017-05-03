@@ -99,7 +99,7 @@
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Selamat Datang <?php echo $user_username; ?> </h1>
+				<h1 class="page-header">Selamat Datang <?php echo $data_user[0]->user_displayname; ?> </h1>
 			</div>
 		</div><!--/.row-->
 		<div class="alert bg-success" role="alert">

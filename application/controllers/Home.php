@@ -6,7 +6,7 @@ function __construct(){
 parent::__construct();
 $this->load->library('session');
 $this->load->database();
-if((!isset($_SESSION['nama']))){
+if((!isset($_SESSION['user_id']))){
 	redirect(base_url('login'));
 }
 }
@@ -29,12 +29,15 @@ if((!isset($_SESSION['nama']))){
 	public function index()
 	{
         
-        //$this->load->model('user');
+        $this->load->model('user');
         //var_dump( $this->user->getValidLogins());
 		//echo "Hello world!";
 	
 		//$data['warga'] = $this->load->view('warga', NULL, TRUE);
-		$this->load->view('dashboard');
+		// $data['user_id'] = $this->session->user_id;
+		$data['data_user'] = $this->user->get($this->session->user_id);
+		//var_dump($data['nama']);
+		$this->load->view('dashboard',$data);
 		//echo "haloo";
 	}
 

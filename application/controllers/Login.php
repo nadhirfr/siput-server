@@ -29,16 +29,19 @@ class Login extends CI_Controller {
 			'user_username' => $username,
 			'user_password' => $password
 			);
+		$result = $this->m_login->cek_login("user",$where)->result();
 		$cek = $this->m_login->cek_login("user",$where)->num_rows();
 		if($cek > 0){
  
 			$data_session = array(
-				'nama' => $username,
+				'user_id' => $result[0]->user_id,
 				'status' => "login"
 				);
  
 			$this->session->set_userdata($data_session);
- 			echo "berhasil";
+ 			//echo "berhasil";
+ 			//var_dump($result[0]->user_id) ;
+ 			//var_dump($cek);
 			redirect(base_url("home"));
  
 		}else{

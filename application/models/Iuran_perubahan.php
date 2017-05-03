@@ -7,12 +7,6 @@ class Iuran_perubahan extends CI_Model {
         public $iuran_perubahan_date;
         public $iuran_id;
 		
-        public function __construct()
-        {
-            parent::__construct();
-        }
-
-    
         public function get_all()
         {
             $this->load->database();
@@ -30,9 +24,10 @@ class Iuran_perubahan extends CI_Model {
         public function insert_entry()
         {
             $this->load->database();
-            $this->iuran_perubahan_id = $_POST['iuran_perubahan_id'];
-            $this->iuran_perubahan_nama = $_POST['iuran_perubahan_nama'];
-            $this->iuran_perubahan_interval = $_POST['iuran_perubahan_interval'];
+            $query = $this->db->get('iuran_perubahan');
+            $this->iuran_perubahan_nominal = $_POST['iuran_perubahan_nominal'];
+            $this->iuran_perubahan_date = $_POST['iuran_perubahan_date'];
+			$this->iuran_id = $_POST['iuran_id'];
             $this->db->insert('iuran_perubahan', $this);
             $insert_id = $this->db->insert_id();
 //            In case of multiple inserts you could use
@@ -46,7 +41,7 @@ class Iuran_perubahan extends CI_Model {
         public function delete_entry($id){
             $this->load->database();
             $this->iuran_perubahan_id = $id;
-            $this->db->where('iuran_perubahan',$this->iuran_perubahan_id);
+            $this->db->where('iuran_perubahan_id',$this->iuran_perubahan_id);
             $this->db->delete('iuran_perubahan');
             if($this->db->affected_rows()>0){ 
                 return $this->iuran_perubahan_id;
@@ -67,7 +62,7 @@ class Iuran_perubahan extends CI_Model {
 			
 			$this->db->where('iuran_perubahan_id',$id);
             $this->db->update('iuran_perubahan', $this);
-			return $iuran_perubahan_id;
+			return $this->iuran_perubahan_id;
         }
 
 }

@@ -116,12 +116,7 @@ class Sessions extends REST_Controller {
 		if($this->input->get('id') != null){
 			 $insert_id = $this->session->update_entry($this->put(),$this->input->get('id'));
         $message = [
-<<<<<<< HEAD
             'id' => $this->input->get('id'),
-=======
-            'session_id' => $this->input->get('id'),
->>>>>>> 1abacc07bc0d04a54010caa70a0b28d3f509c70e
-            'session_status' => $this->put('session_status'),
             'user_id' => $this->put('user_id'),
 			'session_time' => $this->put('session_time'),
             'message'=>'update session'
@@ -143,12 +138,7 @@ class Sessions extends REST_Controller {
         $insert_id = $this->session->insert_entry($_POST);
         // $this->some_model->update_user( ... );
         $message = [
-<<<<<<< HEAD
            'id' => $insert_id, 
-=======
-           'session_id' => $insert_id, 
->>>>>>> 1abacc07bc0d04a54010caa70a0b28d3f509c70e
-            'session_status' => $this->post('session_status'),
             'user_id' => $this->post('user_id'),
 			'session_time' => $this->post('session_time'),
             'message' => 'added a resource'
@@ -160,11 +150,7 @@ class Sessions extends REST_Controller {
     public function index_delete()
     {
         $this->load->model('session');
-<<<<<<< HEAD
         $id =$this->input->get('id');
-=======
-        $id = (int) $this->get('session_id');
->>>>>>> 1abacc07bc0d04a54010caa70a0b28d3f509c70e
 
         // Validate the id.
         if ($id <= 0)

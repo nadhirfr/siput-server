@@ -24,7 +24,7 @@ class Iuran_kategori extends CI_Model {
         public function insert_entry()
         {
             $this->load->database();
-            $this->iuran_kategori_id = $_POST['iuran_kategori_id'];
+            $query = $this->db->get('iuran_kategori');
             $this->iuran_kategori_nama = $_POST['iuran_kategori_nama'];
             $this->iuran_kategori_interval = $_POST['iuran_kategori_interval'];
             $this->db->insert('iuran_kategori', $this);
@@ -39,8 +39,8 @@ class Iuran_kategori extends CI_Model {
     
         public function delete_entry($id){
             $this->load->database();
-            $this->iuran_kategor_id = $id;
-            $this->db->where('iuran_kategori',$this->iuran_kategori_id);
+            $this->iuran_kategori_id = $id;
+            $this->db->where('iuran_kategori_id',$this->iuran_kategori_id);
             $this->db->delete('iuran_kategori');
             if($this->db->affected_rows()>0){ 
                 return $this->iuran_kategori_id;
@@ -60,7 +60,7 @@ class Iuran_kategori extends CI_Model {
 			
 			$this->db->where('iuran_kategori_id',$id);
             $this->db->update('iuran_kategori', $this);
-			return $iuran_kategori_id;
+			return $this->iuran_kategori_id;
         }
 
 }

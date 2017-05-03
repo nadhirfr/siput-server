@@ -26,11 +26,7 @@ class Pengeluaran_user extends CI_Model {
         public function insert_entry()
         {
             $this->load->database();
-<<<<<<< HEAD
 			 $query = $this->db->get('user');
-=======
-            $this->pengeluaran_user_id = $_POST['pengeluaran_user_id'];
->>>>>>> 1abacc07bc0d04a54010caa70a0b28d3f509c70e
             $this->pengeluaran_user_status = $_POST['pengeluaran_user_status'];
             $this->user_id = $_POST['user_id'];
 			$this->pengeluaran_id = $_POST['pengeluaran_id'];
@@ -48,11 +44,7 @@ class Pengeluaran_user extends CI_Model {
         public function delete_entry($id){
             $this->load->database();
             $this->pengeluaran_user_id = $id;
-<<<<<<< HEAD
             $this->db->where('pengeluaran_user_id',$this->pengeluaran_user_id);
-=======
-            $this->db->where('pengeluaran_user',$this->pengeluaran_user_id);
->>>>>>> 1abacc07bc0d04a54010caa70a0b28d3f509c70e
             $this->db->delete('pengeluaran_user');
             if($this->db->affected_rows()>0){ 
                 return $this->pengeluaran_user_id;
@@ -63,11 +55,7 @@ class Pengeluaran_user extends CI_Model {
         }
     
 
-<<<<<<< HEAD
         public function update_entry($pengeluaran_user,$id)
-=======
-        public function update_entry($pengeluaran_kategori,$id)
->>>>>>> 1abacc07bc0d04a54010caa70a0b28d3f509c70e
         {
             $this->load->database();
             $this->pengeluaran_user_id = $id;
@@ -75,18 +63,10 @@ class Pengeluaran_user extends CI_Model {
             $this->user_id = $pengeluaran_user['user_id'];
 			$this->pengeluaran_id = $pengeluaran_user['pengeluaran_id'];
 			$this->transaksi_id = $pengeluaran_user['transaksi_id'];
-<<<<<<< HEAD
 			
 			$this->db->where('pengeluaran_user_id',$id);
             $this->db->update('pengeluaran_user', $this);
 			return $this->pengeluaran_user_id;
-=======
-            $this->db->insert('pengeluaran_user', $this);
-			
-			$this->db->where('pengeluaran_user_id',$id);
-            $this->db->update('pengeluaran_user', $this);
-			return $pengeluaran_user_id;
->>>>>>> 1abacc07bc0d04a54010caa70a0b28d3f509c70e
         }
 
 }

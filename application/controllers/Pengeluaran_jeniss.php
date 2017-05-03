@@ -113,11 +113,11 @@ class Pengeluaran_jeniss extends REST_Controller {
 	public function index_put(){
 		$this->load->model('pengeluaran_jenis');
 		
-		if($this->get('pengeluaran_jenis_id') != null){
-			 $insert_id = $this->pengeluaran_jenis->update_entry($this->put(),$this->get('id'));
+		if($this->input->get('id') != null){
+			 $insert_id = $this->pengeluaran_jenis->update_entry($this->put(),$this->input->get('id'));
         $message = [
-            'pengeluaran_jenis_id' => $this->get('pengeluaran_jenis_id'), 
-            'pengeluaran_nama' => $this->put('pengeluarannama'),
+            'id' => $this->input->get('id'), 
+            'pengeluaran_nama' => $this->put('pengeluaran_nama'),
             'pengeluaran_keterangan' => $this->put('pengeluaran_keterangan'),
         ];
 
@@ -137,7 +137,7 @@ class Pengeluaran_jeniss extends REST_Controller {
         $insert_id = $this->pengeluaran_jenis->insert_entry($_POST);
         // $this->some_model->update_user( ... );
         $message = [
-            'iuran_jenis_id' => $insert_id, 
+            'id' => $insert_id, 
             'pengeluaran_nama' => $this->post('pengeluaran_nama'),
             'pengeluaran_keterangan' => $this->post('pengeluaran_keterangan'),
         ];
@@ -148,19 +148,23 @@ class Pengeluaran_jeniss extends REST_Controller {
     public function index_delete()
     {
         $this->load->model('pengeluaran_jenis');
-        $id = (int) $this->get('pengeluaran_jenis_id');
+        $id =$this->input->get('id');
 
         // Validate the id.
         if ($id <= 0)
         {
             // Set the response and exit
+			$message = [
+                'id' => $id,
+                'message' => 'error'
+				];
             $this->response(NULL, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         } else{
             $status = $this->pengeluaran_jenis->delete_entry($id);
             // $this->some_model->delete_something($id);
             if($status){
                 $message = [
-                'id' => $iuran_jenis_id,
+                'id' => $id,
                 'message' => 'Deleted the resource'
             ];
                 $this->set_response($message, REST_Controller::HTTP_OK); //response ok
