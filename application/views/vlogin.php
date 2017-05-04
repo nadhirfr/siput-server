@@ -7,7 +7,7 @@
 
 <link href="<?php echo base_url();?>css/bootstrap.min.css" rel="stylesheet">
 <link href="<?php echo base_url();?>css/datepicker3.css" rel="stylesheet">
-<link href="<?php echo base_url();?>css/styles.css" rel="stylesheet">
+<link href="<?php echo base_url();?>css/login.css" rel="stylesheet">
 
 <!--[if lt IE 9]>
 <script src="js/html5shiv.js"></script>
@@ -16,60 +16,58 @@
 
 </head>
 
-<body>
-	
-	<div class="row">
-		<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
-			<div class="login-panel panel panel-default">
-				<div class="panel-heading">Log in</div>
-				<div class="panel-body">
-					<form action="<?php echo base_url('login/aksi_login'); ?>" method="post" role="form">
-						<fieldset>
-							<div class="form-group">
-								<input class="form-control" placeholder="Username" name="username" type="text" autofocus="">
-							</div>
-							<div class="form-group">
-								<input class="form-control" placeholder="Password" name="password" type="password" value="">
-							</div>
-							<!--<div class="checkbox">
-								<label>
-									<input name="remember" type="checkbox" value="Remember Me">Remember Me
-								</label>
-							</div> -->
-							<div class="form-group">
-	                            <input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in">
-	                        </div>
-						</fieldset>
-					</form>
-				</div>
-			</div>
-		</div><!-- /.col-->
-	</div><!-- /.row -->	
-	
+	<body>
+		<div class="container">
+	    
+		<div class="col-sm-8 col-sm-offset-2 main">
+		<div class="col-sm-6 left-side">
+		<img id="profile-img" class="profile-img-card" src="<?php echo base_url();?>img/siput-logo.png" />
+		<h1>SIPUT</h1>
+		<p>(Sistem Informasi Keuangan RT)</p>
+		</div><!--col-sm-6-->
+		
+		<div class="col-sm-6 right-side">
+		<h1>Login</h1>
+		
+<!--Form with header-->
+
+<form action="<?php echo base_url('login/aksi_login'); ?>" method="post" role="form">
+<fieldset>
+<div class="form">
+        <div class="form-group">
+		    <label for="form2">Username</label>
+            <input type="text" id="form2" class="form-control" name="username" autofocus="">
+            
+        </div>
+
+        <div class="form-group">
+		    <label for="form4">Password</label>
+            <input type="password" id="form4" class="form-control" name="password" autofocus="">      
+        </div>
+		<div id="notifications"><?php echo $this->session->flashdata('msg'); ?></div> 
+ 		<div class="form-group">
+	        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in">
+	    </div>
+	    </div>
+	    </fieldset>
+	  
+</form>
+
+</div>
+<!--/Form with header-->
+
+		</div><!--col-sm-6-->
+		
+		
+        </div><!--col-sm-8-->
+        
+        </div><!--container-->
+
 		
 
 	<script src="<?php echo base_url();?>js/jquery-1.11.1.min.js"></script>
 	<script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
-	<script src="<?php echo base_url();?>js/chart.min.js"></script>
-	<script src="<?php echo base_url();?>js/chart-data.js"></script>
-	<script src="<?php echo base_url();?>js/easypiechart.js"></script>
-	<script src="<?php echo base_url();?>js/easypiechart-data.js"></script>
-	<script src="<?php echo base_url();?>js/bootstrap-datepicker.js"></script>
-	<script>
-		!function ($) {
-			$(document).on("click","ul.nav li.parent > a > span.icon", function(){		  
-				$(this).find('em:first').toggleClass("glyphicon-minus");	  
-			}); 
-			$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-		}(window.jQuery);
-
-		$(window).on('resize', function () {
-		  if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-		})
-		$(window).on('resize', function () {
-		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-		})
-	</script>	
+	
 </body>
 
 </html>

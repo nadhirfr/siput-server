@@ -45,7 +45,12 @@ class Login extends CI_Controller {
 			redirect(base_url("home"));
  
 		}else{
-			echo "Username dan password salah !";
+			$this->session->set_flashdata('msg', 
+                '<div class="alert alert-danger">
+                    <p>Maaf username atau password salah</p>
+                </div>');
+                redirect(base_url('login'));    
+			//echo "Username dan password salah !";
 		}
 	}
  

@@ -39,8 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<li class="dropdown pull-right">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> User <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Profile</a></li>
-							<li><a href="#"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg> Settings</a></li>
+							
 							<li><a href="<?php echo base_url('login/logout'); ?>"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li>
 						</ul>
 					</li>
@@ -51,11 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</nav>
 		
 	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-		<form role="search">
-			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Search">
-			</div>
-		</form>
+
 		<ul class="nav menu">
 			<li><a href="<?php echo base_url('home')?>"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-home"></use></svg> Beranda</a></li>
 			<li class="active"><a href="<?php echo base_url('pemasukan')?>"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Pemasukan</a></li>
@@ -86,7 +81,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<li role="presentation" class="divider"></li>
 			
 		</ul>
-		<div class="attribution">Template by <a href="http://www.medialoot.com/item/lumino-admin-bootstrap-template/">Medialoot</a><br/><a href="http://www.glyphs.co" style="color: #333;">Icons by Glyphs</a></div>
+		<div class="attribution">SIPUT<br/><a href="http://www.glyphs.co" style="color: #333;">Icons by Glyphs</a></div>
 	</div><!--/.sidebar-->
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">		
