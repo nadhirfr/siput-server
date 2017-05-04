@@ -34,6 +34,8 @@ if((!isset($_SESSION['user_id']))){
         $this->load->model('deposit');
         $this->load->model('iuran_user');
         $this->load->model('iuran');
+        $this->load->model('iuran_jenis');
+        $this->load->model('iuran_kategori');
         //var_dump( $this->user->getValidLogins());
 		//echo "Hello world!";
 	
@@ -50,9 +52,12 @@ if((!isset($_SESSION['user_id']))){
 			$data['data_iuran_user'][$i]->iuran_nama = $this->iuran->get($data['data_iuran_user'][$i]->iuran_id)[0]->iuran_nama;
 			$data['data_iuran_user'][$i]->iuran_nominal = $this->iuran->get($data['data_iuran_user'][$i]->iuran_id)[0]->iuran_nominal;
 			$data['data_iuran_user'][$i]->iuran_jenis_id = $this->iuran->get($data['data_iuran_user'][$i]->iuran_id)[0]->iuran_jenis_id;
+			$data['data_iuran_user'][$i]->iuran_jenis_nama = $this->iuran_jenis->get($data['data_iuran_user'][$i]->iuran_jenis_id)[0]->iuran_jenis_nama;
 			$data['data_iuran_user'][$i]->iuran_kategori_id = $this->iuran->get($data['data_iuran_user'][$i]->iuran_id)[0]->iuran_kategori_id;
+			$data['data_iuran_user'][$i]->iuran_kategori_nama = $this->iuran_kategori->get($data['data_iuran_user'][$i]->iuran_kategori_id)[0]->iuran_kategori_nama;
+			$data['data_iuran_user'][$i]->iuran_kekurangan = $this->transaksi->getUtang($data['data_iuran_user'][$i]->user_id,$data['data_iuran_user'][$i]->iuran_id);
 		}
-		//var_dump($data['nama']);
+		//var_dump($data['iuran']);
 		$this->load->view('dashboard',$data);
 		//echo "haloo";
 	}

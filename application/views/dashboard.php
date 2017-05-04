@@ -170,6 +170,8 @@
 						    <tr>
 						        <th data-sortable="true">Nama Iuran</th>
 						        <th data-sortable="true">Status</th>
+						        <th data-sortable="true">Jenis Iuran</th>
+						        <th data-sortable="true">Kategori Iuran</th>
 						        <th data-sortable="true">Nominal (@iuran)</th>
 						        <th data-sortable="true">Kekurangan</th>
 						    </tr>
@@ -180,14 +182,17 @@
 								<td><?php echo $value->iuran_nama ?></td>
 								<td><?php $tampil = $value->iuran_user_status == 1 ? "Lunas" : $tampil = "Belum Lunas";
 											echo $tampil;?></td>
+								<td><?php echo $value->iuran_jenis_nama ?></td>
+								<td><?php echo $value->iuran_kategori_nama ?></td>
 								<td><?php echo $value->iuran_nominal ?></td>
-								<td>Belum Dikerjakan</td>
+								<td><?php $tampil = $value->iuran_user_status == 1 ? "0" : $value->iuran_kekurangan;
+											echo $tampil; ?></td>
 							</tr>
 							<?php } ?>
 							</tbody>
 						</table>
 						<p>
-							<?php var_dump($data_iuran_user);?>
+							<?php //var_dump($data_iuran_user);?>
 						</p>
 					</div>
 				</div>

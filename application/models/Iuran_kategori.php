@@ -16,7 +16,7 @@ class Iuran_kategori extends CI_Model {
 		
 		public function get($id){
 			$this->load->database();
-			$this->db->where($id);
+			$this->db->where('iuran_kategori_id',$id);
             $query = $this->db->get('iuran_kategori');
             return $query->result();
 		}

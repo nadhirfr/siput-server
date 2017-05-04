@@ -16,7 +16,7 @@ class Iuran_jenis extends CI_Model {
 		
 		public function get($id){
 			$this->load->database();
-			$this->db->where($id);
+			$this->db->where('iuran_jenis_id',$id);
             $query = $this->db->get('iuran_jenis');
             return $query->result();
 		}
