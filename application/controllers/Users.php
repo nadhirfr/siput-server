@@ -120,6 +120,9 @@ class Users extends REST_Controller {
             'username' => $this->put('username'),
             'displayname' => $this->put('displayname'),
             'tipe'  => $this->put('tipe'),
+            'alamat'  => $this->put('alamat'),
+            'ktp'  => $this->put('ktp'),
+            'tgl_lahir'  => $this->put('tgl_lahir'),
             'message' => 'Updated a user'
         ];
 
@@ -143,6 +146,9 @@ class Users extends REST_Controller {
             'username' => $this->post('username'),
             'displayname' => $this->post('displayname'),
             'tipe'  => $this->post('tipe'),
+            'alamat'  => $this->put('alamat'),
+            'ktp'  => $this->put('ktp'),
+            'tgl_lahir'  => $this->put('tgl_lahir'),
             'message' => 'Added a resource'
         ];
 

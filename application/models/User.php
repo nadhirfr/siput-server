@@ -37,6 +37,9 @@ class User extends CI_Model {
             $this->user_displayname = $_POST['displayname'];
             $this->user_password = $_POST['password'];
             $this->user_tipe = $_POST['tipe'];
+            $this->user_alamat = $_POST['alamat'];
+            $this->user_ktp = $_POST['ktp'];
+            $this->user_tgl_lahir = $_POST['tgl_lahir'];
             $this->db->insert('user', $this);
             $insert_id = $this->db->insert_id();
 
@@ -75,6 +78,9 @@ class User extends CI_Model {
             $this->user_displayname = $user['displayname'];
             $this->user_password = $user['password'];
             $this->user_tipe = $user['tipe'];
+            $this->user_alamat = $user['alamat'];
+            $this->user_ktp = $user['ktp'];
+            $this->user_tgl_lahir = $user['tgl_lahir'];
 			
 			$this->db->where('user_id',$id);
             $this->db->update('user', $this);
