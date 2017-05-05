@@ -86,7 +86,7 @@
 			<li role="presentation" class="divider"></li>
 
 		</ul>
-		<div class="attribution">SIPUT <a href="http://www.medialoot.com/item/lumino-admin-bootstrap-template/"></a><br/><a href="http://www.glyphs.co" style="color: #333;">Icons by Glyphs</a></div>
+		<div class="attribution">SIPUT<br/><a href="http://www.glyphs.co" style="color: #333;">Icons by Glyphs</a></div>
 	</div><!--/.sidebar-->
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
@@ -209,13 +209,9 @@
 				</div>
 	</div>-->
 
-	<script src="js/jquery-1.11.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/chart.min.js"></script>
-	<script src="js/chart-data.js"></script>
-	<script src="js/easypiechart.js"></script>
-	<script src="js/easypiechart-data.js"></script>
-	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="<?php echo base_url();?>js/jquery-1.11.1.min.js"></script>
+	<script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
+	<script src="<?php echo base_url();?>js/bootstrap-datepicker.js"></script>
 	<script src="<?php echo base_url();?>js/bootstrap-table.js"></script>
 	<script>
 		$('#calendar').datepicker({

@@ -63,14 +63,23 @@ if((!isset($_SESSION['user_id']))){
 	}
 
 	public function warga(){
-		$this->load->view('warga');
+		$this->load->model('user');
+		$user_id = $this->session->user_id;
+		$data['data_user'] = $this->user->get($user_id);
+		$this->load->view('warga',$data);
 	}
 
 	public function pemasukan(){
-		$this->load->view('pemasukan');
+		$this->load->model('user');
+		$user_id = $this->session->user_id;
+		$data['data_user'] = $this->user->get($user_id);
+		$this->load->view('pemasukan',$data);
 	}
 
 	public function grafik(){
-		$this->load->view('grafik');
+				$this->load->model('user');
+		$user_id = $this->session->user_id;
+		$data['data_user'] = $this->user->get($user_id);
+		$this->load->view('grafik',$data);
 	}
 }

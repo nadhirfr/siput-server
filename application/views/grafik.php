@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<a class="navbar-brand" href="#"><span>SIPUT</span> SISTEM KEUANGAN RT</a>
 				<ul class="user-menu">
 					<li class="dropdown pull-right">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> User <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> <?php echo $data_user[0]->user_username;?> <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							
 							<li><a href="<?php echo base_url('login/logout'); ?>"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li>
@@ -55,28 +55,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<li><a href="<?php echo base_url('pemasukan')?>"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Pemasukan </a></li>
 			<li class="active"><a href="<?php echo base_url('grafik')?>"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Grafik Pemasukan dan Pengeluaran</a></li>
 			<li><a href="<?php echo base_url('warga')?>"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Data Warga </a></li>
-			<li class="parent ">
-				<a href="#">
-					<span data-toggle="collapse" href="#sub-item-1"><svg class="glyph stroked chevron-down"><use xlink:href="#stroked-chevron-down"></use></svg></span> Dropdown 
-				</a>
-				<ul class="children collapse" id="sub-item-1">
-					<li>
-						<a class="" href="#">
-							<svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Sub Item 1
-						</a>
-					</li>
-					<li>
-						<a class="" href="#">
-							<svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Sub Item 2
-						</a>
-					</li>
-					<li>
-						<a class="" href="#">
-							<svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Sub Item 3
-						</a>
-					</li>
-				</ul>
-			</li>
 			<li role="presentation" class="divider"></li>
 			<!-- <li><a href="login.html"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Login Page</a></li> -->
 		</ul>
@@ -93,7 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Grafifk Pemasukan dan Pengeluaran</h1>
+				<h1 class="page-header">Grafik Pemasukan dan Pengeluaran</h1>
 				
 			</div>
 		</div><!--/.row-->
@@ -105,81 +83,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="panel-body">
 						<div class="canvas-wrapper">
 							<canvas class="main-chart" id="line-chart" height="200" width="600"></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/.row-->
-		
-		<!--<div class="row">
-			<div class="col-lg-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">Bar Chart</div>
-					<div class="panel-body">
-						<div class="canvas-wrapper">
-							<canvas class="main-chart" id="bar-chart" height="200" width="600"></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/.row-->		
-		
-	<!--	<div class="row">
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">Pie Chart</div>
-					<div class="panel-body">
-						<div class="canvas-wrapper">
-							<canvas class="chart" id="pie-chart" ></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">Doughnut Chart</div>
-					<div class="panel-body">
-						<div class="canvas-wrapper">
-							<canvas class="chart" id="doughnut-chart" ></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/.row-->
-		
-		<!-- <div class="row">
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Label:</h4>
-						<div class="easypiechart" id="easypiechart-blue" data-percent="92" ><span class="percent">92%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Label:</h4>
-						<div class="easypiechart" id="easypiechart-orange" data-percent="65" ><span class="percent">65%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Label:</h4>
-						<div class="easypiechart" id="easypiechart-teal" data-percent="56" ><span class="percent">56%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Label:</h4>
-						<div class="easypiechart" id="easypiechart-red" data-percent="27" ><span class="percent">27%</span>
 						</div>
 					</div>
 				</div>

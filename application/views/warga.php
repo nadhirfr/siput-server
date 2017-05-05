@@ -37,7 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<a class="navbar-brand" href="#"><span>SIPUT</span> SISTEM KEUANGAN RT</a>
 				<ul class="user-menu">
 					<li class="dropdown pull-right">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> User <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> <?php echo $data_user[0]->user_username;?> <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="<?php echo base_url('login/logout'); ?>"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li>
 						</ul>
