@@ -70,6 +70,12 @@ class Transaksis extends REST_Controller {
 					$message = $this->transaksi->getTotalDibayar($user_id, $iuran_id);
 					
 					$this->response($message,REST_Controller::HTTP_OK);
+				} elseif($param == 'getMonth'){
+					$month = $this->get('month');
+					$tipe = $this->get('tipe');
+					$message = $this->transaksi->getJumlahTransaksiPerBulan($month,$tipe);
+					
+					$this->response($message,REST_Controller::HTTP_OK);
 				} else{// Check if the users data store contains users (in case the database result returns NULL)
 					if ($transaksis)
 					{

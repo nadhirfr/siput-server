@@ -108,6 +108,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						    <tr>
 						        <th data-field="user_username" data-sortable="true">Username</th>
 						        <th data-field="user_displayname"  data-sortable="true">Full Name</th>
+						        <th data-field="user_ktp"  data-sortable="true">Nomor KTP</th>
+						        <th data-field="user_alamat"  data-sortable="true">Alamat</th>
+						        <th data-field="user_tgl_lahir"  data-sortable="true">Tanggal Lahir</th>
 						        <th data-field="user_tipe" data-sortable="true">Tipe User</th>
 						    </tr>
 						    </thead>

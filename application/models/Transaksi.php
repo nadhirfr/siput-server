@@ -25,6 +25,24 @@ class Transaksi extends CI_Model {
             $query = $this->db->get('transaksi');
             return $query->result();
 		}
+		
+		public function getJumlahTransaksiPerBulan($id,$tipe){
+			$this->load->database();
+			$jumlah = 0;
+			$array = array('MONTH(transaksi_date)' => $id, 'YEAR(transaksi_date)' => date("Y"));
+			$this->db->where($array);
+            $query = $this->db->get('transaksi');
+            $hasil =  $query->result();
+			foreach($hasil as $key => $value){
+				if($value->transaksi_tipe == $tipe){
+					$jumlah = $jumlah + $value->transaksi_nominal;
+				} elseif($tipe == null){
+					$jumlah = $jumlah + $value->transaksi_nominal;
+				}
+			}
+			
+			return $jumlah;
+		}
     
         public function insert_entry()
         {
