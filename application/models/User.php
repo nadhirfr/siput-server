@@ -59,15 +59,14 @@ class User extends CI_Model {
                
         }
         
-        public function getValidLogins(){
+        public function getValidLogins($username, $password){
             $this->load->database();
+			$array = array('user_username' => $username, 'user_password' => $password);
+			$this->db->where($array);
             $query = $this->db->get('user');
             $result = $query->result();
-            $user = NULL;
-             foreach($result as $key => $values){
-                 $user[] = array($values->user_username => $values->user_password);
-             }
-            return $user;
+            
+            return (int)($result[0]->user_id);
         }
 
         public function update_entry($user, $id)
