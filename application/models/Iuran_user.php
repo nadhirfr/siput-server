@@ -29,6 +29,16 @@ class Iuran_user extends CI_Model {
             return $query->result();
 		}
 		
+		public function getBelumLunas($user_id){
+			$this->load->database();
+			$array = array('user_id' => $user_id, 'iuran_user_status' => 0);
+			$this->db->where($array);
+			//$this->db->where('user_id',$id);
+            $query = $this->db->get('iuran_user');
+            return $query->result();
+		}
+
+		
         public function insert_entry()
         {
             $this->load->database();

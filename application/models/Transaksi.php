@@ -66,9 +66,34 @@ class Transaksi extends CI_Model {
 		}
 		
 		public function getUtang($user_id,$iuran_id){
+			$total_bayar = $this->getTotalBayar($user_id,$iuran_id);
+			$total_dibayar = $this->getTotalDibayar($user_id,$iuran_id);
+			return $total_bayar-$total_dibayar;
+			
+		}
+		
+		public function getTotalDibayar($user_id,$iuran_id){
 			$this->load->database();
 			$total = 0;
 			$listTransaksi = $this->get_all();
+			
+			foreach($listTransaksi as $key => $value){
+					if($value->user_id == $user_id
+                    && $value->iuran_id == $iuran_id){
+						$total = $total + $value->transaksi_nominal;
+					}
+				}
+				
+				return $total;
+			/* var_dump($this->getTransaksiPertama($user_id,$iuran_id)[0]->transaksi_date); */
+			
+			//return $iuran;
+			
+		}
+		
+		public function getTotalBayar($user_id,$iuran_id){
+			$this->load->database();
+			$total = 0;
 			$this->db->where('iuran_id',$iuran_id);
 			$iuran = $this->db->get('iuran')->result();
 			
@@ -83,38 +108,22 @@ class Transaksi extends CI_Model {
 				// @link http://www.php.net/manual/en/class.dateinterval.php
 				$interval = $d2->diff($d1);
 				$beda_bulan = $interval->m + 12*$interval->y;
-				$total_bayar = $iuran[0]->iuran_nominal * $beda_bulan;
-				foreach($listTransaksi as $key => $value){
-					if($value->user_id == $user_id
-                    && $value->iuran_id == $iuran_id){
-						$total = $total + $value->transaksi_nominal;
-					}
-				}
-				return $total_bayar-$total;
+				$total_bayar = (int)($beda_bulan != null ? $iuran[0]->iuran_nominal * $beda_bulan : $iuran[0]->iuran_nominal);
+				
+				return $total_bayar;
 			} elseif($interval == 7){
 				$d1 = new DateTime('now');
 				$d2 = new DateTime($this->getTransaksiPertama($user_id,$iuran_id)[0]->transaksi_date);
 				$interval = $d1->diff($d2);
 				$beda_minggu = (int)(($interval->days)/7);
 				
-				$total_bayar = $iuran[0]->iuran_nominal * $beda_minggu;
-				foreach($listTransaksi as $key => $value){
-					if($value->user_id == $user_id
-                    && $value->iuran_id == $iuran_id){
-						$total = $total + $value->transaksi_nominal;
-					}
-				}
+				$total_bayar = (int)($beda_minggu != null ? $iuran[0]->iuran_nominal * $beda_minggu : $iuran[0]->iuran_nominal);
 				
-				return $total_bayar-$total;
+				return $total_bayar;
 			} else{
-				$total_bayar = $iuran[0]->iuran_nominal;
-				foreach($listTransaksi as $key => $value){
-					if($value->user_id == $user_id
-                    && $value->iuran_id == $iuran_id){
-						$total = $total + $value->transaksi_nominal;
-					}
-				}
-				return $total_bayar-$total;
+				$total_bayar = (int)($iuran[0]->iuran_nominal);
+			
+				return $total_bayar;
 			}
 			
 			/* var_dump($this->getTransaksiPertama($user_id,$iuran_id)[0]->transaksi_date); */

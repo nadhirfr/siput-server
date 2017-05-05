@@ -50,6 +50,26 @@ class Transaksis extends REST_Controller {
 				} elseif ($param == 'jumlahPengeluaran'){
 					$message = $this->transaksi->getJumlahPengeluaran();
 					$this->response($message,REST_Controller::HTTP_OK);
+				} elseif($param == 'getUtang'){
+					$user_id = $this->get('user_id');
+					$iuran_id = $this->get('iuran_id');
+					
+					$message = $this->transaksi->getUtang($user_id, $iuran_id);
+					$this->response($message,REST_Controller::HTTP_OK);
+				} elseif($param == 'getTotalBayar'){
+					$user_id = $this->get('user_id');
+					$iuran_id = $this->get('iuran_id');
+					
+					$message = $this->transaksi->getTotalBayar($user_id, $iuran_id);
+					
+					$this->response($message,REST_Controller::HTTP_OK);
+				} elseif($param == 'getTotalDibayar'){
+					$user_id = $this->get('user_id');
+					$iuran_id = $this->get('iuran_id');
+					
+					$message = $this->transaksi->getTotalDibayar($user_id, $iuran_id);
+					
+					$this->response($message,REST_Controller::HTTP_OK);
 				} else{// Check if the users data store contains users (in case the database result returns NULL)
 					if ($transaksis)
 					{

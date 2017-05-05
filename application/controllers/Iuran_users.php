@@ -48,6 +48,8 @@ class Iuran_users extends REST_Controller {
         $iuran_users = $this->iuran_user->get_all();
 
         $id = $this->get('id');
+        $param = $this->get('param');
+        $user_id = $this->get('user_id');
 
         // If the id parameter doesn't exist return all the users
 
@@ -56,8 +58,13 @@ class Iuran_users extends REST_Controller {
             // Check if the users data store contains users (in case the database result returns NULL)
             if ($iuran_users)
             {
-                // Set the response and exit
-                $this->response($iuran_users, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+				if($param == 'getBelumLunas' and $user_id != null){
+					$message = $this->iuran_user->getBelumLunas($user_id);
+					$this->response($message, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+				} else{
+					// Set the response and exit
+					$this->response($iuran_users, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+				}
             }
             else
             {
