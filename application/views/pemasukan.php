@@ -102,15 +102,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="panel panel-default">
 					<div class="panel-heading"> History transaksi </div>
 					<div class="panel-body">
-						<table data-toggle="table" data-url="<?php echo base_url();?>transaksis"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+						<table data-toggle="table" data-url="x"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
 						    <thead>
 						    <tr>
-						        <th data-field="transaksi_date" data-sortable="true">Tanggal Transaksi</th>
-						        <th data-field="transaksi_tipe"  data-sortable="true">Tipe Transaksi</th>
-						        <th data-field="transaksi_nama" data-sortable="true">Nama Transaksi</th>
-						        <th data-field="transaksi_nominal" data-sortable="true">Nominal Transaksi</th>
+						        <th data-sortable="true">Tanggal Transaksi</th>
+						        <th  data-sortable="true">Tipe Transaksi</th>
+						        <th data-sortable="true">Nama Transaksi</th>
+						        <th data-sortable="true">Nominal Transaksi</th>
 						    </tr>
 						    </thead>
+							<tbody>
+							<?php foreach ($data_transaksi as $key => $value) { ?>
+							<tr>
+								<td><?php echo $value->transaksi_date; ?></td>
+								<td><?php echo $value->transaksi_tipe;?></td>
+								<td><?php echo $value->transaksi_nama; ?></td>
+								<td><?php echo $value->transaksi_nominal; ?></td>
+							</tr>
+							<?php } ?>
+							</tbody>
 						</table>
 						
 					</div>

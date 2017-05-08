@@ -12,8 +12,7 @@ class Transaksi extends CI_Model {
 		
 
     
-        public function get_all()
-        {
+        public function get_all(){
             $this->load->database();
             $query = $this->db->get('transaksi');
             return $query->result();
@@ -44,8 +43,7 @@ class Transaksi extends CI_Model {
 			return $jumlah;
 		}
     
-        public function insert_entry()
-        {
+        public function insert_entry(){
             $this->load->database();
             $query = $this->db->get('transaksi');
             $this->transaksi_date = $_POST['transaksi_date'];
@@ -167,9 +165,7 @@ class Transaksi extends CI_Model {
 									AND user_id=".$user_id." AND iuran_id=".$iuran_id.";")->result();
 		}
    
-
-        public function update_entry($transaksi,$id)
-        {
+        public function update_entry($transaksi,$id){
             $this->load->database();
             $this->transaksi_id = $id;
             $this->transaksi_date = $transaksi['transaksi_date'];
@@ -185,4 +181,10 @@ class Transaksi extends CI_Model {
 			return $this->transaksi_id;
         }
 
+		public function getByUser($id){
+			$this->load->database();
+			$this->db->where('user_id',$id);
+            $query = $this->db->get('transaksi');
+            return $query->result();
+		}
 }

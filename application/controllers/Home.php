@@ -26,8 +26,7 @@ if((!isset($_SESSION['user_id']))){
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
+	public function index(){
         
         $this->load->model('user');
         $this->load->model('transaksi');
@@ -66,20 +65,30 @@ if((!isset($_SESSION['user_id']))){
 		$this->load->model('user');
 		$user_id = $this->session->user_id;
 		$data['data_user'] = $this->user->get($user_id);
+		//var_dump($data['data_user']);
 		$this->load->view('warga',$data);
 	}
 
 	public function pemasukan(){
 		$this->load->model('user');
+		$this->load->model('transaksi');
 		$user_id = $this->session->user_id;
 		$data['data_user'] = $this->user->get($user_id);
+		$data['data_transaksi'] = $this->transaksi->getByUser($user_id);
+		//var_dump($data['data_transaksi']);
 		$this->load->view('pemasukan',$data);
 	}
 
 	public function grafik(){
-				$this->load->model('user');
+		$this->load->model('user');
+		$this->load->model('transaksi');
 		$user_id = $this->session->user_id;
 		$data['data_user'] = $this->user->get($user_id);
+		$data['data_transaksi'] = $this->transaksi->get_all();
+		for($i=0;$i<sizeof($data['data_transaksi']);$i++){
+			$data['data_transaksi'][$i]->transaksi_user = $this->user->get($data['data_transaksi'][$i]->user_id)[0]->user_displayname;
+		}
+		//var_dump($data['data_transaksi']);
 		$this->load->view('grafik',$data);
 	}
 }

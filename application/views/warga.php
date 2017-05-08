@@ -96,7 +96,49 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<h1 class="page-header">Data Warga</h1>
 			</div>
 		</div><!--/.row-->
-				
+			
+
+		<div class="row">
+			<div class="col-md-">
+				<div class="panel panel-default">
+					<div class="panel-heading"> Data Pengeluaran </div>
+					<div class="panel-body">
+						<table data-toggle="table" data-url="x"  data-show-refresh="true" 
+						data-show-toggle="true" data-show-columns="true" data-search="true" 
+						data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+						    <thead>
+						    <tr>
+						        <th data-sortable="true">Username</th>
+						        <th data-sortable="true">Full Name</th>
+						        <th data-sortable="true">Password</th>
+						        <th data-sortable="true">Nomor KTP</th>
+						        <th data-sortable="true">Alamat</th>
+						        <th data-sortable="true">Tanggal Lahir</th>
+						        <th data-sortable="true">Tipe User</th>
+						    </tr>
+						    </thead>
+							
+							<tbody>
+							<?php foreach ($data_user as $key => $value) { ?>
+							<tr>
+								<td><?php echo $value->user_username; ?></td>
+								<td><?php echo $value->user_displayname;?></td>
+								<td><?php echo $value->user_password;?></td>
+								<td><?php echo $value->user_ktp; ?></td>
+								<td><?php echo $value->user_alamat;?></td>
+								<td><?php echo $value->user_tgl_lahir; ?></td>
+								<td><?php echo $value->user_tipe; ?></td>
+							</tr>
+							<?php } ?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+			
 		
 		<div class="row">
 			<div class="col-lg-12">
@@ -119,71 +161,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</div>
 		</div><!--/.row-->	
-		<div class="row">
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading"> Data Pengeluaran </div>
-					<div class="panel-body">
-						<table data-toggle="table" data-url="tables/data2.json" >
-						    <thead>
-						    <tr>
-						       <!-- <th data-field="id" data-align="right">Item ID</th> -->
-						        <th data-field="name">Nama Pengeluaran</th>
-						        <th data-field="price">Besaran</th>
-						    </tr>
-						    </thead>
-						</table>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading"> Data Deposit</div>
-					<div class="panel-body">
-						<table data-toggle="table" id="table-style" data-url="tables/data2.json" data-row-style="rowStyle">
-						    <thead>
-						    <tr>
-						        <th data-field="state" data-checkbox="true" >Nomer</th>
-						        <th data-field="id" data-sortable="true">ID Warga</th>
-						        <th data-field="name"  data-sortable="true">Nama Warga</th>
-						        <th data-field="price" data-sortable="true"> Data Pembayaran</th>
-						    </tr>
-						    </thead>
-						</table>
-						<script>
-						    $(function () {
-						        $('#hover, #striped, #condensed').click(function () {
-						            var classes = 'table';
-						
-						            if ($('#hover').prop('checked')) {
-						                classes += ' table-hover';
-						            }
-						            if ($('#condensed').prop('checked')) {
-						                classes += ' table-condensed';
-						            }
-						            $('#table-style').bootstrapTable('destroy')
-						                .bootstrapTable({
-						                    classes: classes,
-						                    striped: $('#striped').prop('checked')
-						                });
-						        });
-						    });
-						
-						    function rowStyle(row, index) {
-						        var classes = ['active', 'success', 'info', 'warning', 'danger'];
-						
-						        if (index % 2 === 0 && index / 2 < classes.length) {
-						            return {
-						                classes: classes[index / 2]
-						            };
-						        }
-						        return {};
-						    }
-						</script>
-					</div>
-				</div>
-			</div>
-		</div><!--/.row-->	
+		
 		
 		
 	</div><!--/.main-->
