@@ -56,6 +56,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<li class="active"><a href="<?php echo base_url('grafik')?>"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Grafik Pemasukan dan Pengeluaran</a></li>
 			<li><a href="<?php echo base_url('warga')?>"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Data Warga </a></li>
 			<li role="presentation" class="divider"></li>
+			
 			<!-- <li><a href="login.html"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Login Page</a></li> -->
 		</ul>
 		<div class="attribution">SIPUT <br/><a href="http://www.glyphs.co" style="color: #333;">Icons by Glyphs</a></div>
